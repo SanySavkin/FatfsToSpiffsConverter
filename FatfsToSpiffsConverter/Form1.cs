@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FatfsToSpiffsConverter.Communication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,18 @@ using System.Windows.Forms;
 
 namespace FatfsToSpiffsConverter
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        private MessagesProto m_Proto;
+        public MainForm()
         {
             InitializeComponent();
+            m_Proto = MessagesProto.Instance;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
