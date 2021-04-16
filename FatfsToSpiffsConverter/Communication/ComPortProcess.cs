@@ -16,9 +16,13 @@ namespace FatfsToSpiffsConverter.Communication
         private CancellationTokenSource m_source = new CancellationTokenSource();
         private static object m_lock = new object();
         private Task m_currentThread;
-        private ConcurrentQueue<string> messagesQueue = new ConcurrentQueue<string>();
-        public ComPortProcess()
+        private ConcurrentQueue<byte[]> messagesQueue = new ConcurrentQueue<byte[]>();
+        private MessagesProto m_msgProto;
+        private SerialPort port = null;
+
+        public ComPortProcess(MessagesProto proto)
         {
+            m_msgProto = proto;
             Start();
         }
 
@@ -34,57 +38,78 @@ namespace FatfsToSpiffsConverter.Communication
             }
         }
 
-        private SerialPort PortInit()
+        private void PortInit()
         {
-            SerialPort port = new SerialPort();
-            port.PortName = "COM3";
-            port.BaudRate = 115200;
+            port = new SerialPort
+            {
+                PortName = "COM3",
+                BaudRate = 115200
+            };
             try
             {
                 Console.WriteLine("Try opening port: " + port.PortName);
                 port.Open();
                 Console.WriteLine("port opened: " + port.PortName);
-                return port;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return null;
         }
 
         private void Processing(CancellationToken token)
         {
             while (!token.IsCancellationRequested)
             {
-                var port = PortInit();
+                PortInit();
                 if (port != null)
                 {
-                    try
+                    try 
                     {
-                        while (true)
+                        try
                         {
-                            if (port.BytesToRead > 0)
+                            MessageWriteFolder msg = new MessageWriteFolder();
+                            msg.srcPath = "Indoor/snd/en";
+                            msg.dstPath = "snd/en";
+                            while (true)
                             {
-                                Console.WriteLine(port.ReadExisting());
+                                m_msgProto.SendMessageWriteFolder(msg);
+                                if (port.BytesToRead > 0)
+                                {
+                                    Console.WriteLine(port.ReadExisting());
+                                }
+                                if (messagesQueue.Count != 0)
+                                {
+                                    byte[] data;
+                                    messagesQueue.TryDequeue(out data);
+                                    port.Write(data, 0, data.Length);
+                                }
+                                Thread.Sleep(4000);
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     }
-                    catch (IOException ex)
-                    {
-                    }
-
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex);
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        if(port != null) port.Dispose();
                     }
                 }
-                else
-                {
-                    Thread.Sleep(4000);
-                }
-               
+
+                Thread.Sleep(2000);
             }
+        }
+
+        public bool Send(byte[] data)
+        {
+            messagesQueue.Enqueue(data);
+            return true;
         }
     }
 }
