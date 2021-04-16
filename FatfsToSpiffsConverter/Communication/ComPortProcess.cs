@@ -51,7 +51,7 @@ namespace FatfsToSpiffsConverter.Communication
                 port.Open();
                 Console.WriteLine("port opened: " + port.PortName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -61,47 +61,49 @@ namespace FatfsToSpiffsConverter.Communication
         {
             while (!token.IsCancellationRequested)
             {
-                PortInit();
-                if (port != null)
+                try
                 {
-                    try 
+                    PortInit();
+                    if (port != null)
                     {
-                        try
+                        using (port)
                         {
-                            MessageWriteFolder msg = new MessageWriteFolder();
-                            msg.srcPath = "Indoor/snd/en";
-                            msg.dstPath = "snd/en";
-                            while (true)
+                            try
                             {
-                                m_msgProto.SendMessageWriteFolder(msg);
-                                if (port.BytesToRead > 0)
+                                MessageWriteFolder msg = new MessageWriteFolder();
+                                msg.srcPath = "Indoor/snd/en";
+                                msg.dstPath = "snd/en";
+                                while (port.IsOpen)
                                 {
-                                    Console.WriteLine(port.ReadExisting());
+                                    m_msgProto.SendMessageWriteFolder(msg);
+                                    if (port.BytesToRead > 0)
+                                    {
+                                        Console.WriteLine(port.ReadExisting());
+                                    }
+                                    if (messagesQueue.Count != 0)
+                                    {
+                                        byte[] data;
+                                        messagesQueue.TryDequeue(out data);
+                                        port.Write(data, 0, data.Length);
+                                    }
+                                    Thread.Sleep(4000);
                                 }
-                                if (messagesQueue.Count != 0)
-                                {
-                                    byte[] data;
-                                    messagesQueue.TryDequeue(out data);
-                                    port.Write(data, 0, data.Length);
-                                }
-                                Thread.Sleep(4000);
+                            }
+                            catch (IOException ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        if(port != null) port.Dispose();
                     }
                 }
-
+                catch (IOException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 Thread.Sleep(2000);
             }
         }
