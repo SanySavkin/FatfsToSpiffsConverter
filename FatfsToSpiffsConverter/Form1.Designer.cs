@@ -32,51 +32,51 @@ namespace FatfsToSpiffsConverter
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.FlashSizeTxt = new System.Windows.Forms.TextBox();
-            this.StartAddressTxt = new System.Windows.Forms.TextBox();
-            this.PageSizeTxt = new System.Windows.Forms.TextBox();
-            this.BlockSizeTxt = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label9 = new System.Windows.Forms.Label();
             this.ComboBox_ComPorts = new System.Windows.Forms.ComboBox();
             this.connectionLabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label_profileName = new System.Windows.Forms.Label();
+            this.button_StartFlash = new System.Windows.Forms.Button();
+            this.label_Message = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButton_User = new System.Windows.Forms.RadioButton();
+            this.radioButton_Profile = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox_Profile = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_FlashSize = new System.Windows.Forms.TextBox();
+            this.textBox_StartAddress = new System.Windows.Forms.TextBox();
+            this.textBox_PageSize = new System.Windows.Forms.TextBox();
+            this.textBox_BlockSize = new System.Windows.Forms.TextBox();
+            this.textBox_EraseSize = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBox_FormatingSpiffs = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_PathFatfs = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_RemoveProfile = new System.Windows.Forms.Button();
+            this.button_SaveUser = new System.Windows.Forms.Button();
+            this.button_AddToProfile = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_PathSpiffs = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -103,6 +103,124 @@ namespace FatfsToSpiffsConverter
             this.tabPage1.Text = "Flash";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.ComboBox_ComPorts, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.connectionLabel, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label_profileName, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button_StartFlash, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label_Message, 0, 3);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 432);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // progressBar1
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.progressBar1, 2);
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(50, 253);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(370, 24);
+            this.progressBar1.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(187, 343);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 17);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Порт:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ComboBox_ComPorts
+            // 
+            this.ComboBox_ComPorts.FormattingEnabled = true;
+            this.ComboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
+            this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(90, 0);
+            this.ComboBox_ComPorts.MinimumSize = new System.Drawing.Size(90, 0);
+            this.ComboBox_ComPorts.Name = "ComboBox_ComPorts";
+            this.ComboBox_ComPorts.Size = new System.Drawing.Size(90, 24);
+            this.ComboBox_ComPorts.TabIndex = 2;
+            this.ComboBox_ComPorts.DropDown += new System.EventHandler(this.ComboBox_ComPorts_DropDown);
+            // 
+            // connectionLabel
+            // 
+            this.connectionLabel.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.connectionLabel, 2);
+            this.connectionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.connectionLabel.Location = new System.Drawing.Point(3, 310);
+            this.connectionLabel.Name = "connectionLabel";
+            this.connectionLabel.Size = new System.Drawing.Size(464, 30);
+            this.connectionLabel.TabIndex = 3;
+            this.connectionLabel.Text = "Connected";
+            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(100, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(132, 17);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Текущий профиль:";
+            // 
+            // label_profileName
+            // 
+            this.label_profileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_profileName.AutoSize = true;
+            this.label_profileName.Location = new System.Drawing.Point(238, 13);
+            this.label_profileName.Name = "label_profileName";
+            this.label_profileName.Size = new System.Drawing.Size(96, 17);
+            this.label_profileName.TabIndex = 5;
+            this.label_profileName.Text = "имя профиля";
+            // 
+            // button_StartFlash
+            // 
+            this.button_StartFlash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button_StartFlash.BackColor = System.Drawing.Color.SpringGreen;
+            this.tableLayoutPanel2.SetColumnSpan(this.button_StartFlash, 2);
+            this.button_StartFlash.Location = new System.Drawing.Point(161, 63);
+            this.button_StartFlash.Name = "button_StartFlash";
+            this.button_StartFlash.Size = new System.Drawing.Size(147, 64);
+            this.button_StartFlash.TabIndex = 6;
+            this.button_StartFlash.Text = "START";
+            this.button_StartFlash.UseVisualStyleBackColor = false;
+            // 
+            // label_Message
+            // 
+            this.label_Message.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label_Message.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.label_Message, 2);
+            this.label_Message.Location = new System.Drawing.Point(208, 160);
+            this.label_Message.Margin = new System.Windows.Forms.Padding(3, 30, 3, 0);
+            this.label_Message.Name = "label_Message";
+            this.label_Message.Size = new System.Drawing.Size(54, 17);
+            this.label_Message.TabIndex = 7;
+            this.label_Message.Text = "label15";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -122,33 +240,33 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.radioButton1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton2, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton_User, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.radioButton_Profile, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_Profile, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.FlashSizeTxt, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.StartAddressTxt, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.PageSizeTxt, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.BlockSizeTxt, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_FlashSize, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_StartAddress, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_PageSize, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_BlockSize, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_EraseSize, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox2, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox_FormatingSpiffs, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_PathFatfs, 1, 11);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 2, 14);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.button_RemoveProfile, 2, 14);
+            this.tableLayoutPanel1.Controls.Add(this.button_SaveUser, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.button_AddToProfile, 0, 14);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 14);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_PathSpiffs, 1, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -171,34 +289,34 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Size = new System.Drawing.Size(470, 432);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // radioButton1
+            // radioButton_User
             // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.radioButton_User.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.SetColumnSpan(this.radioButton1, 2);
-            this.radioButton1.Location = new System.Drawing.Point(6, 32);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(279, 30);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Пользовательские";
-            this.radioButton1.UseVisualStyleBackColor = false;
+            this.radioButton_User.AutoSize = true;
+            this.radioButton_User.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.SetColumnSpan(this.radioButton_User, 2);
+            this.radioButton_User.Location = new System.Drawing.Point(6, 32);
+            this.radioButton_User.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.radioButton_User.Name = "radioButton_User";
+            this.radioButton_User.Size = new System.Drawing.Size(279, 30);
+            this.radioButton_User.TabIndex = 0;
+            this.radioButton_User.TabStop = true;
+            this.radioButton_User.Text = "Пользовательские";
+            this.radioButton_User.UseVisualStyleBackColor = false;
             // 
-            // radioButton2
+            // radioButton_Profile
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(291, 35);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(86, 21);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Профиль";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton_Profile.AutoSize = true;
+            this.radioButton_Profile.Location = new System.Drawing.Point(291, 35);
+            this.radioButton_Profile.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
+            this.radioButton_Profile.Name = "radioButton_Profile";
+            this.radioButton_Profile.Size = new System.Drawing.Size(86, 21);
+            this.radioButton_Profile.TabIndex = 1;
+            this.radioButton_Profile.TabStop = true;
+            this.radioButton_Profile.Text = "Профиль";
+            this.radioButton_Profile.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -232,18 +350,18 @@ namespace FatfsToSpiffsConverter
             this.label2.Text = "Spiffs";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // comboBox_Profile
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.comboBox_Profile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(306, 66);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 24);
-            this.comboBox1.TabIndex = 4;
+            this.comboBox_Profile.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox_Profile.FormattingEnabled = true;
+            this.comboBox_Profile.Location = new System.Drawing.Point(306, 66);
+            this.comboBox_Profile.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.comboBox_Profile.Name = "comboBox_Profile";
+            this.comboBox_Profile.Size = new System.Drawing.Size(143, 24);
+            this.comboBox_Profile.TabIndex = 4;
             // 
             // label3
             // 
@@ -320,56 +438,56 @@ namespace FatfsToSpiffsConverter
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.label7, "Размер стираемого блока");
             // 
-            // FlashSizeTxt
+            // textBox_FlashSize
             // 
-            this.FlashSizeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.FlashSizeTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.FlashSizeTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FlashSizeTxt.Location = new System.Drawing.Point(105, 98);
-            this.FlashSizeTxt.Name = "FlashSizeTxt";
-            this.FlashSizeTxt.Size = new System.Drawing.Size(100, 16);
-            this.FlashSizeTxt.TabIndex = 10;
-            this.toolTip1.SetToolTip(this.FlashSizeTxt, "HEX формат без префикса 0x");
+            this.textBox_FlashSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_FlashSize.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_FlashSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_FlashSize.Location = new System.Drawing.Point(105, 98);
+            this.textBox_FlashSize.Name = "textBox_FlashSize";
+            this.textBox_FlashSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_FlashSize.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.textBox_FlashSize, "HEX формат без префикса 0x");
             // 
-            // StartAddressTxt
+            // textBox_StartAddress
             // 
-            this.StartAddressTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.StartAddressTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StartAddressTxt.Location = new System.Drawing.Point(105, 123);
-            this.StartAddressTxt.Name = "StartAddressTxt";
-            this.StartAddressTxt.Size = new System.Drawing.Size(100, 16);
-            this.StartAddressTxt.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.StartAddressTxt, "HEX формат без префикса 0x");
+            this.textBox_StartAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_StartAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_StartAddress.Location = new System.Drawing.Point(105, 124);
+            this.textBox_StartAddress.Name = "textBox_StartAddress";
+            this.textBox_StartAddress.Size = new System.Drawing.Size(100, 16);
+            this.textBox_StartAddress.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.textBox_StartAddress, "HEX формат без префикса 0x");
             // 
-            // PageSizeTxt
+            // textBox_PageSize
             // 
-            this.PageSizeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PageSizeTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PageSizeTxt.Location = new System.Drawing.Point(105, 150);
-            this.PageSizeTxt.Name = "PageSizeTxt";
-            this.PageSizeTxt.Size = new System.Drawing.Size(100, 16);
-            this.PageSizeTxt.TabIndex = 12;
-            this.toolTip1.SetToolTip(this.PageSizeTxt, "HEX формат без префикса 0x");
+            this.textBox_PageSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_PageSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_PageSize.Location = new System.Drawing.Point(105, 150);
+            this.textBox_PageSize.Name = "textBox_PageSize";
+            this.textBox_PageSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PageSize.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.textBox_PageSize, "HEX формат без префикса 0x");
             // 
-            // BlockSizeTxt
+            // textBox_BlockSize
             // 
-            this.BlockSizeTxt.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.BlockSizeTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.BlockSizeTxt.Location = new System.Drawing.Point(105, 175);
-            this.BlockSizeTxt.Name = "BlockSizeTxt";
-            this.BlockSizeTxt.Size = new System.Drawing.Size(100, 16);
-            this.BlockSizeTxt.TabIndex = 13;
-            this.toolTip1.SetToolTip(this.BlockSizeTxt, "HEX формат без префикса 0x");
+            this.textBox_BlockSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_BlockSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_BlockSize.Location = new System.Drawing.Point(105, 176);
+            this.textBox_BlockSize.Name = "textBox_BlockSize";
+            this.textBox_BlockSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_BlockSize.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.textBox_BlockSize, "HEX формат без префикса 0x");
             // 
-            // textBox3
+            // textBox_EraseSize
             // 
-            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(105, 201);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 16);
-            this.textBox3.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.textBox3, "HEX формат без префикса 0x");
+            this.textBox_EraseSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_EraseSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_EraseSize.Location = new System.Drawing.Point(105, 202);
+            this.textBox_EraseSize.Name = "textBox_EraseSize";
+            this.textBox_EraseSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_EraseSize.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.textBox_EraseSize, "HEX формат без префикса 0x");
             // 
             // label8
             // 
@@ -384,23 +502,20 @@ namespace FatfsToSpiffsConverter
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.label8, "Путь в который будут скопированы файлы");
             // 
-            // toolTip1
+            // checkBox_FormatingSpiffs
             // 
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.SetColumnSpan(this.checkBox2, 2);
-            this.checkBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox2.Location = new System.Drawing.Point(9, 250);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(276, 25);
-            this.checkBox2.TabIndex = 18;
-            this.checkBox2.Text = "форматировать перед копированием";
-            this.checkBox2.UseVisualStyleBackColor = false;
+            this.checkBox_FormatingSpiffs.AutoSize = true;
+            this.checkBox_FormatingSpiffs.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox_FormatingSpiffs, 2);
+            this.checkBox_FormatingSpiffs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox_FormatingSpiffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_FormatingSpiffs.Location = new System.Drawing.Point(9, 250);
+            this.checkBox_FormatingSpiffs.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.checkBox_FormatingSpiffs.Name = "checkBox_FormatingSpiffs";
+            this.checkBox_FormatingSpiffs.Size = new System.Drawing.Size(276, 25);
+            this.checkBox_FormatingSpiffs.TabIndex = 18;
+            this.checkBox_FormatingSpiffs.Text = "форматировать перед копированием";
+            this.checkBox_FormatingSpiffs.UseVisualStyleBackColor = false;
             // 
             // label10
             // 
@@ -431,28 +546,16 @@ namespace FatfsToSpiffsConverter
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.label11, "Путь с которого будут скопированы\r\nфайлы");
             // 
-            // textBox1
+            // textBox_PathFatfs
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(102, 311);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 16);
-            this.textBox1.TabIndex = 21;
-            this.toolTip1.SetToolTip(this.textBox1, "Например:\r\nsnd/en\r\nsnd\r\n/");
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.SpringGreen;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(4, 333);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 30);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = false;
+            this.textBox_PathFatfs.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_PathFatfs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_PathFatfs.Location = new System.Drawing.Point(102, 311);
+            this.textBox_PathFatfs.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox_PathFatfs.Name = "textBox_PathFatfs";
+            this.textBox_PathFatfs.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PathFatfs.TabIndex = 21;
+            this.toolTip1.SetToolTip(this.textBox_PathFatfs, "Например:\r\nsnd/en\r\nsnd\r\n/");
             // 
             // pictureBox1
             // 
@@ -466,28 +569,40 @@ namespace FatfsToSpiffsConverter
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
-            // button2
+            // button_RemoveProfile
             // 
-            this.button2.BackColor = System.Drawing.Color.Tomato;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(289, 388);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(177, 40);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Удалить профиль";
-            this.button2.UseVisualStyleBackColor = false;
+            this.button_RemoveProfile.BackColor = System.Drawing.Color.Tomato;
+            this.button_RemoveProfile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_RemoveProfile.Location = new System.Drawing.Point(289, 388);
+            this.button_RemoveProfile.Name = "button_RemoveProfile";
+            this.button_RemoveProfile.Size = new System.Drawing.Size(177, 40);
+            this.button_RemoveProfile.TabIndex = 24;
+            this.button_RemoveProfile.Text = "Удалить профиль";
+            this.button_RemoveProfile.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // button_SaveUser
             // 
-            this.button3.BackColor = System.Drawing.Color.LightGreen;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(4, 388);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 40);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "Добавить\r\nв профили";
-            this.button3.UseVisualStyleBackColor = false;
+            this.button_SaveUser.BackColor = System.Drawing.Color.SpringGreen;
+            this.button_SaveUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_SaveUser.Location = new System.Drawing.Point(4, 333);
+            this.button_SaveUser.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.button_SaveUser.Name = "button_SaveUser";
+            this.button_SaveUser.Size = new System.Drawing.Size(94, 30);
+            this.button_SaveUser.TabIndex = 22;
+            this.button_SaveUser.Text = "Сохранить";
+            this.button_SaveUser.UseVisualStyleBackColor = false;
+            // 
+            // button_AddToProfile
+            // 
+            this.button_AddToProfile.BackColor = System.Drawing.Color.LightGreen;
+            this.button_AddToProfile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_AddToProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_AddToProfile.Location = new System.Drawing.Point(4, 388);
+            this.button_AddToProfile.Name = "button_AddToProfile";
+            this.button_AddToProfile.Size = new System.Drawing.Size(94, 40);
+            this.button_AddToProfile.TabIndex = 25;
+            this.button_AddToProfile.Text = "Добавить\r\nв профили";
+            this.button_AddToProfile.UseVisualStyleBackColor = false;
             // 
             // label12
             // 
@@ -505,7 +620,7 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(110, 397);
+            this.textBox2.Location = new System.Drawing.Point(110, 401);
             this.textBox2.Margin = new System.Windows.Forms.Padding(8, 5, 3, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(172, 16);
@@ -515,132 +630,15 @@ namespace FatfsToSpiffsConverter
             this.toolTip1.SetToolTip(this.textBox2, "Введите имя профиля");
             this.textBox2.WordWrap = false;
             // 
-            // textBox4
+            // textBox_PathSpiffs
             // 
-            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(105, 228);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 16);
-            this.textBox4.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.textBox4, "Например:\r\nsnd/en\r\nsnd\r\n/");
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.ComboBox_ComPorts, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.connectionLabel, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button4, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label15, 0, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 9;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 432);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // progressBar1
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.progressBar1, 2);
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(50, 253);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(370, 24);
-            this.progressBar1.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(187, 343);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 17);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Порт:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ComboBox_ComPorts
-            // 
-            this.ComboBox_ComPorts.FormattingEnabled = true;
-            this.ComboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
-            this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(90, 0);
-            this.ComboBox_ComPorts.MinimumSize = new System.Drawing.Size(90, 0);
-            this.ComboBox_ComPorts.Name = "ComboBox_ComPorts";
-            this.ComboBox_ComPorts.Size = new System.Drawing.Size(90, 24);
-            this.ComboBox_ComPorts.TabIndex = 2;
-            // 
-            // connectionLabel
-            // 
-            this.connectionLabel.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.connectionLabel, 2);
-            this.connectionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectionLabel.Location = new System.Drawing.Point(3, 310);
-            this.connectionLabel.Name = "connectionLabel";
-            this.connectionLabel.Size = new System.Drawing.Size(464, 30);
-            this.connectionLabel.TabIndex = 3;
-            this.connectionLabel.Text = "Connected";
-            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(100, 13);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(132, 17);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Текущий профиль:";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(238, 13);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 17);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "имя профиля";
-            // 
-            // button4
-            // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button4.BackColor = System.Drawing.Color.SpringGreen;
-            this.tableLayoutPanel2.SetColumnSpan(this.button4, 2);
-            this.button4.Location = new System.Drawing.Point(161, 63);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 64);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "START";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label15.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.label15, 2);
-            this.label15.Location = new System.Drawing.Point(208, 160);
-            this.label15.Margin = new System.Windows.Forms.Padding(3, 30, 3, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 17);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "label15";
+            this.textBox_PathSpiffs.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_PathSpiffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_PathSpiffs.Location = new System.Drawing.Point(105, 228);
+            this.textBox_PathSpiffs.Name = "textBox_PathSpiffs";
+            this.textBox_PathSpiffs.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PathSpiffs.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.textBox_PathSpiffs, "Например:\r\nsnd/en\r\nsnd\r\n/");
             // 
             // MainForm
             // 
@@ -655,12 +653,12 @@ namespace FatfsToSpiffsConverter
             this.Text = "W25Qxxx_Flasher";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -671,43 +669,43 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton_User;
+        private System.Windows.Forms.RadioButton radioButton_Profile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_Profile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox FlashSizeTxt;
-        private System.Windows.Forms.TextBox StartAddressTxt;
-        private System.Windows.Forms.TextBox PageSizeTxt;
-        private System.Windows.Forms.TextBox BlockSizeTxt;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_FlashSize;
+        private System.Windows.Forms.TextBox textBox_StartAddress;
+        private System.Windows.Forms.TextBox textBox_PageSize;
+        private System.Windows.Forms.TextBox textBox_BlockSize;
+        private System.Windows.Forms.TextBox textBox_EraseSize;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox_FormatingSpiffs;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_PathFatfs;
+        private System.Windows.Forms.Button button_SaveUser;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_RemoveProfile;
+        private System.Windows.Forms.Button button_AddToProfile;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox_PathSpiffs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox ComboBox_ComPorts;
         private System.Windows.Forms.Label connectionLabel;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label_profileName;
+        private System.Windows.Forms.Button button_StartFlash;
+        private System.Windows.Forms.Label label_Message;
     }
 }
 
