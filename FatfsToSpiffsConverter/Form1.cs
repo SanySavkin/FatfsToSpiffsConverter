@@ -19,10 +19,5 @@ namespace FatfsToSpiffsConverter
             InitializeComponent();
             m_Proto = MessagesProto.Instance;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

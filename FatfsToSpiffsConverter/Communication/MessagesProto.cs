@@ -11,6 +11,7 @@ using System.Threading;
 namespace FatfsToSpiffsConverter.Communication
 {
     public enum ErrorList{
+        NO_ERROR = 0,
         ERROR_WRITE_FILE = 1,
     }
 
