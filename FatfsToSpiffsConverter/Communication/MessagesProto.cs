@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace FatfsToSpiffsConverter.Communication
 {
@@ -23,7 +26,17 @@ namespace FatfsToSpiffsConverter.Communication
         MSG_ID_GET_FLASH_TYPE,
         MSG_ID_WRITE_FOLDER,
         MSG_ID_SPIFFS_SETTINGS,
-    }    
+    }
+    
+    public struct MessageError
+    {
+        public uint codeError;
+    }
+
+    public struct MessageFlashType
+    {
+        public uint typeId;
+    }
 
     public struct MessageSettings
     {
@@ -39,18 +52,27 @@ namespace FatfsToSpiffsConverter.Communication
     {
         public string srcPath;
         public string dstPath;
-    }
+    }   
 
     public class MessagesProto: IProto
     {
         private ComPortProcess comPort;
+        private Task m_currentThread;
+        private CancellationTokenSource m_source = new CancellationTokenSource();
         private static MessagesProto m_instance;
         private static readonly object m_lock = new object();
+        public ConcurrentQueue<byte> messagesQueueRx = new ConcurrentQueue<byte>();
+        private byte[] recivedDataBuffer = new byte[512];
+        public int debugCountMessages = 0;
+        public int debugCountErrorMessages = 0;
+        
+
 
 
         private MessagesProto()
         {
             comPort = new ComPortProcess(this);
+            Start();
         }
 
         public static MessagesProto Instance
@@ -66,10 +88,119 @@ namespace FatfsToSpiffsConverter.Communication
             }
         }
 
+        private void Start()
+        {
+            if (m_currentThread != null) return;
+            lock (m_lock)
+            {
+                if (m_currentThread != null) return;
+                var token = m_source.Token;
+                var factory = new TaskFactory(token);
+                m_currentThread = factory.StartNew(() => Processing(token), token);
+            }
+        }
+
         public bool Send(byte[] data)
         {
             comPort.Send(data);
             return true;
+        }
+
+        public void ReceiveData(byte b)
+        {
+           messagesQueueRx.Enqueue(b);
+        }
+
+        private void RxControlTimerElapsedClbck(object sender, ElapsedEventArgs e)
+        {
+            ClearMessageQueue();
+        }
+
+        private void Timeouts()
+        {
+            if (messagesQueueRx.IsEmpty)
+            {
+                TimeoutsCheck.ResetTimer();
+            }
+        }
+
+        private void ClearMessageQueue()
+        {
+            while (messagesQueueRx.Count != 0)
+            {
+                byte data;
+                messagesQueueRx.TryDequeue(out data);
+            }
+        }
+
+        private void Processing(CancellationToken token)
+        {
+            TimeoutsCheck.StartTimer(RxControlTimerElapsedClbck);
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    MessageDispatcherProcess();
+                    Thread.Sleep(2);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        private void MessageDispatcherProcess()
+        {
+            Timeouts();
+            int idx = 0;
+            if(messagesQueueRx.Count > 4)
+            {
+                recivedDataBuffer = messagesQueueRx.ToArray();
+                int lenMsg = BitConverter.ToInt32(recivedDataBuffer, 0);
+                if(messagesQueueRx.Count >= lenMsg + 4)
+                {
+                    byte[] msgB = new byte[lenMsg + 4];
+                    for(; idx < lenMsg + 4; idx++)
+                    {
+                        while (!messagesQueueRx.TryDequeue(out msgB[idx])) ;
+                    }
+                    MessageParse(msgB);
+                    TimeoutsCheck.ResetTimer();
+                }
+               
+            }
+        }
+
+        private void MessageParse(byte[] b)
+        {
+            object obj = new object();
+            int size = b.Length - 8;
+            if (size < 0) return;
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            try
+            {
+                Marshal.Copy(b, 8, ptr, size);
+                uint id = BitConverter.ToUInt32(b, 4);
+                switch ((MessagesId)id)
+                {
+                    case MessagesId.MSG_ID_ERROR:
+                        obj = (MessageError)Marshal.PtrToStructure(ptr, typeof(MessageError));
+                        OnMessageErrorReceived((MessageError)obj);
+                        break;
+                    case MessagesId.MSG_ID_GET_FLASH_TYPE:
+                        obj = (MessageFlashType)Marshal.PtrToStructure(ptr, typeof(MessageFlashType));
+                        OnMessageFlashTypeReceived((MessageFlashType)obj);
+                        break;
+                    default:
+                        debugCountErrorMessages++;
+                        break;
+                }
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(ptr);
+            }
         }
 
         /// <summary>
@@ -86,8 +217,6 @@ namespace FatfsToSpiffsConverter.Communication
             uint msgIdU = Convert.ToUInt32(msgId);
             byte[] lenB = BitConverter.GetBytes(lenU);
             byte[] idB = BitConverter.GetBytes(msgIdU);
-            //if (BitConverter.IsLittleEndian)
-            //    Array.Reverse(bytes);
             lenB.CopyTo(arr, 0);
             idB.CopyTo(arr, 4);
             data.CopyTo(arr, 8);
@@ -148,19 +277,37 @@ namespace FatfsToSpiffsConverter.Communication
             }
         }
 
-        //private object FromBytes(byte[] arr)
-        //{
-        //    CIFSPacket str = new CIFSPacket();
+        private void OnMessageErrorReceived(MessageError msg)
+        {
+            debugCountMessages++;
+        }
 
-        //    int size = Marshal.SizeOf(str);
-        //    IntPtr ptr = Marshal.AllocHGlobal(size);
+        private void OnMessageFlashTypeReceived(MessageFlashType msg)
+        {
 
-        //    Marshal.Copy(arr, 0, ptr, size);
+        }
+    }
 
-        //    str = (CIFSPacket)Marshal.PtrToStructure(ptr, str.GetType());
-        //    Marshal.FreeHGlobal(ptr);
+    public static class TimeoutsCheck
+    {
+        private static System.Timers.Timer aTimer;
 
-        //    return str;
-        //}
+
+        /// <summary>
+        /// контроль таймаута приема данных
+        /// </summary>
+        public static void StartTimer(ElapsedEventHandler handler)
+        {
+            aTimer = new System.Timers.Timer(2000);
+            aTimer.AutoReset = true;
+            aTimer.Elapsed += handler;
+            aTimer.Start();
+        }
+
+        public static void ResetTimer()
+        {
+            aTimer.Stop();
+            aTimer.Start();
+        }
     }
 }

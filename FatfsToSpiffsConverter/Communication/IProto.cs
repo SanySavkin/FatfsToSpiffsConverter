@@ -8,6 +8,7 @@ namespace FatfsToSpiffsConverter.Communication
 {
     public interface IProto
     {
-       bool Send(byte[] data);
+        bool Send(byte[] data);
+        void ReceiveData(byte b);
     }
 }
