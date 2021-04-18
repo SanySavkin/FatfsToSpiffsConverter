@@ -7,12 +7,22 @@ using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace FatfsToSpiffsConverter.Communication
 {
     public enum ErrorList{
-        NO_ERROR = 0,
-        ERROR_WRITE_FILE = 1,
+        GLOB_ERR_NONE = 0,
+        GLOB_ERR_ALLOCATE_MEMORY = 1,
+        GLOB_ERR_SPIFFS_MOUNTING = 2,
+        GLOB_ERR_FLASH_PARAMETERS = 3,
+        GLOB_ERR_SPIFFS_FORMATING = 4,
+        GLOB_ERR_LONG_FILE_NAME = 5,
+        GLOB_ERR_FILE_READ = 6,
+        GLOB_ERR_FILE_WRITE = 7,
+        GLOB_ERR_NOT_A_FILES = 8,
+        GLOB_ERR_HASH = 9,
     }
 
    public enum MessagesId
@@ -66,7 +76,11 @@ namespace FatfsToSpiffsConverter.Communication
         private byte[] recivedDataBuffer = new byte[512];
         public int debugCountMessages = 0;
         public int debugCountErrorMessages = 0;
-        
+        public bool isStarted = false;
+        public bool isSentWriteFolder = false;
+
+        private MainForm m_mainForm;
+
 
 
 
@@ -87,6 +101,12 @@ namespace FatfsToSpiffsConverter.Communication
                     }
                 return m_instance;
             }
+        }
+
+        public void SetForm(MainForm f)
+        {
+            comPort.SetForm(f);
+            m_mainForm = f;
         }
 
         private void Start()
@@ -278,15 +298,108 @@ namespace FatfsToSpiffsConverter.Communication
             }
         }
 
+        private void UpdateUiProgress(int value)
+        {
+            SetControlPropertyThreadSafe(m_mainForm.progressBar1, "Value", value);
+        }
+
+        private void UpdateUIMessageText(ErrorList code)
+        {
+            string text;
+            switch (code)
+            {
+                case ErrorList.GLOB_ERR_ALLOCATE_MEMORY:
+                    text = "Ошибка выделения памяти. \r\n Переподключите устройство.";
+                    break;
+                case ErrorList.GLOB_ERR_FILE_WRITE:
+                    text = "Ошибка записи в файловую систему Spiffs. \r\n Убедитесь что достаточно памяти для копирования всех файлов";
+                    break;
+                case ErrorList.GLOB_ERR_FLASH_PARAMETERS:
+                    text = "Ошибка параметров для Spiffs.";
+                    break;
+                case ErrorList.GLOB_ERR_HASH:
+                    text = "Ошибка контрольной суммы. \r\n Попробуйте еще раз.";
+                    break;
+                case ErrorList.GLOB_ERR_LONG_FILE_NAME:
+                    text = "Имя файла слишком большое.";
+                    break;
+                case ErrorList.GLOB_ERR_SPIFFS_FORMATING:
+                    text = "Ошибка форматирования.\r\n Попробуйте еще раз. ";
+                    break;
+                case ErrorList.GLOB_ERR_SPIFFS_MOUNTING:
+                    text = "Ошибка монтирования файловой системы.\r\n Попробуйте еще раз. ";
+                    break;
+                case ErrorList.GLOB_ERR_NONE:
+                    text = "Success!";
+                    break;
+                default:
+                    text = "Ошибка";
+                    break;
+            }
+            SetControlPropertyThreadSafe(m_mainForm.label_Message, "Text", text);
+        }
+
         private void OnMessageErrorReceived(MessageError msg)
         {
-            debugCountMessages++;
+            if (isStarted)
+            {
+                if((ErrorList)msg.codeError == ErrorList.GLOB_ERR_NONE)
+                {
+                    if (isStarted)
+                    {
+                        if (!isSentWriteFolder)
+                        {
+                            MainSettings mainSet = Settings.Instance.MnSettings;
+                            MessageWriteFolder msg2;
+                            msg2.srcPath = mainSet.pathFatfs;
+                            msg2.dstPath = mainSet.pathSpiffs;
+                            //msg2.srcPath ="test/snd/en";
+                            //msg2.dstPath = "snd/en";
+                            SendMessageWriteFolder(msg2);
+                            isSentWriteFolder = true;
+                            UpdateUiProgress(20);
+                        }
+                        else
+                        {
+                            isSentWriteFolder = false;
+                            isStarted = false;
+                            UpdateUIMessageText((ErrorList)msg.codeError);
+                        }
+                    }
+                }
+                else
+                {
+                    UpdateUIMessageText((ErrorList)msg.codeError);
+                }
+            }
         }
 
         private void OnMessageFlashTypeReceived(MessageFlashType msg)
         {
 
         }
+
+        private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);
+
+        public void SetControlPropertyThreadSafe(Control control, string propertyName, object propertyValue)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(new SetControlPropertyThreadSafeDelegate
+                (SetControlPropertyThreadSafe),
+                new object[] { control, propertyName, propertyValue });
+            }
+            else
+            {
+                control.GetType().InvokeMember(
+                    propertyName,
+                    BindingFlags.SetProperty,
+                    null,
+                    control,
+                    new object[] { propertyValue });
+            }
+        }
+
     }
 
     public static class TimeoutsCheck
@@ -309,6 +422,6 @@ namespace FatfsToSpiffsConverter.Communication
         {
             aTimer.Stop();
             aTimer.Start();
-        }
+        }        
     }
 }

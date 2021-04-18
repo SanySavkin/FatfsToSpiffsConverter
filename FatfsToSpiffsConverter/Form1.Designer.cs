@@ -65,11 +65,10 @@ namespace FatfsToSpiffsConverter
             this.textBox_PathFatfs = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_RemoveProfile = new System.Windows.Forms.Button();
-            this.button_SaveUser = new System.Windows.Forms.Button();
             this.button_AddToProfile = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox_PathSpiffs = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,7 +88,7 @@ namespace FatfsToSpiffsConverter
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(484, 471);
+            this.tabControl1.Size = new System.Drawing.Size(484, 451);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -98,7 +97,7 @@ namespace FatfsToSpiffsConverter
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(476, 438);
+            this.tabPage1.Size = new System.Drawing.Size(476, 418);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Flash";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -129,7 +128,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 432);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 412);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // progressBar1
@@ -175,7 +174,7 @@ namespace FatfsToSpiffsConverter
             this.connectionLabel.Size = new System.Drawing.Size(464, 30);
             this.connectionLabel.TabIndex = 3;
             this.connectionLabel.Text = "Connected";
-            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label13
             // 
@@ -208,18 +207,19 @@ namespace FatfsToSpiffsConverter
             this.button_StartFlash.TabIndex = 6;
             this.button_StartFlash.Text = "START";
             this.button_StartFlash.UseVisualStyleBackColor = false;
+            this.button_StartFlash.Click += new System.EventHandler(this.button_StartFlash_Click);
             // 
             // label_Message
             // 
             this.label_Message.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label_Message.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.label_Message, 2);
-            this.label_Message.Location = new System.Drawing.Point(208, 160);
+            this.label_Message.Location = new System.Drawing.Point(235, 160);
             this.label_Message.Margin = new System.Windows.Forms.Padding(3, 30, 3, 0);
             this.label_Message.Name = "label_Message";
-            this.label_Message.Size = new System.Drawing.Size(54, 17);
+            this.label_Message.Size = new System.Drawing.Size(0, 17);
             this.label_Message.TabIndex = 7;
-            this.label_Message.Text = "label15";
+            this.label_Message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -227,7 +227,7 @@ namespace FatfsToSpiffsConverter
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(476, 438);
+            this.tabPage2.Size = new System.Drawing.Size(476, 418);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -261,16 +261,15 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.textBox_PathFatfs, 1, 11);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button_RemoveProfile, 2, 14);
-            this.tableLayoutPanel1.Controls.Add(this.button_SaveUser, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.button_AddToProfile, 0, 14);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.button_RemoveProfile, 2, 13);
+            this.tableLayoutPanel1.Controls.Add(this.button_AddToProfile, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 13);
             this.tableLayoutPanel1.Controls.Add(this.textBox_PathSpiffs, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 15;
+            this.tableLayoutPanel1.RowCount = 14;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -284,9 +283,9 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(470, 432);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(470, 412);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radioButton_User
@@ -303,7 +302,7 @@ namespace FatfsToSpiffsConverter
             this.radioButton_User.Size = new System.Drawing.Size(279, 30);
             this.radioButton_User.TabIndex = 0;
             this.radioButton_User.TabStop = true;
-            this.radioButton_User.Text = "Пользовательские";
+            this.radioButton_User.Text = "Создать профиль";
             this.radioButton_User.UseVisualStyleBackColor = false;
             // 
             // radioButton_Profile
@@ -312,10 +311,10 @@ namespace FatfsToSpiffsConverter
             this.radioButton_Profile.Location = new System.Drawing.Point(291, 35);
             this.radioButton_Profile.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.radioButton_Profile.Name = "radioButton_Profile";
-            this.radioButton_Profile.Size = new System.Drawing.Size(86, 21);
+            this.radioButton_Profile.Size = new System.Drawing.Size(145, 21);
             this.radioButton_Profile.TabIndex = 1;
             this.radioButton_Profile.TabStop = true;
-            this.radioButton_Profile.Text = "Профиль";
+            this.radioButton_Profile.Text = "Выбрать профиль";
             this.radioButton_Profile.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -330,7 +329,6 @@ namespace FatfsToSpiffsConverter
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(468, 30);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Использовать настройки\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
@@ -340,7 +338,7 @@ namespace FatfsToSpiffsConverter
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel1.SetColumnSpan(this.label2, 2);
             this.label2.Location = new System.Drawing.Point(1, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
@@ -362,6 +360,8 @@ namespace FatfsToSpiffsConverter
             this.comboBox_Profile.Name = "comboBox_Profile";
             this.comboBox_Profile.Size = new System.Drawing.Size(143, 24);
             this.comboBox_Profile.TabIndex = 4;
+            this.comboBox_Profile.DropDown += new System.EventHandler(this.comboBox_Profile_DropDown);
+            this.comboBox_Profile.SelectedIndexChanged += new System.EventHandler(this.comboBox_Profile_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -443,9 +443,10 @@ namespace FatfsToSpiffsConverter
             this.textBox_FlashSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_FlashSize.BackColor = System.Drawing.SystemColors.Window;
             this.textBox_FlashSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_FlashSize.Location = new System.Drawing.Point(105, 98);
+            this.textBox_FlashSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_FlashSize.Location = new System.Drawing.Point(105, 97);
             this.textBox_FlashSize.Name = "textBox_FlashSize";
-            this.textBox_FlashSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_FlashSize.Size = new System.Drawing.Size(100, 19);
             this.textBox_FlashSize.TabIndex = 10;
             this.toolTip1.SetToolTip(this.textBox_FlashSize, "HEX формат без префикса 0x");
             // 
@@ -453,9 +454,10 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_StartAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_StartAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_StartAddress.Location = new System.Drawing.Point(105, 124);
+            this.textBox_StartAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_StartAddress.Location = new System.Drawing.Point(105, 123);
             this.textBox_StartAddress.Name = "textBox_StartAddress";
-            this.textBox_StartAddress.Size = new System.Drawing.Size(100, 16);
+            this.textBox_StartAddress.Size = new System.Drawing.Size(100, 19);
             this.textBox_StartAddress.TabIndex = 11;
             this.toolTip1.SetToolTip(this.textBox_StartAddress, "HEX формат без префикса 0x");
             // 
@@ -463,9 +465,10 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_PageSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_PageSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_PageSize.Location = new System.Drawing.Point(105, 150);
+            this.textBox_PageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_PageSize.Location = new System.Drawing.Point(105, 149);
             this.textBox_PageSize.Name = "textBox_PageSize";
-            this.textBox_PageSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PageSize.Size = new System.Drawing.Size(100, 19);
             this.textBox_PageSize.TabIndex = 12;
             this.toolTip1.SetToolTip(this.textBox_PageSize, "HEX формат без префикса 0x");
             // 
@@ -473,9 +476,10 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_BlockSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_BlockSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_BlockSize.Location = new System.Drawing.Point(105, 176);
+            this.textBox_BlockSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_BlockSize.Location = new System.Drawing.Point(105, 175);
             this.textBox_BlockSize.Name = "textBox_BlockSize";
-            this.textBox_BlockSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_BlockSize.Size = new System.Drawing.Size(100, 19);
             this.textBox_BlockSize.TabIndex = 13;
             this.toolTip1.SetToolTip(this.textBox_BlockSize, "HEX формат без префикса 0x");
             // 
@@ -483,9 +487,10 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_EraseSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_EraseSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_EraseSize.Location = new System.Drawing.Point(105, 202);
+            this.textBox_EraseSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_EraseSize.Location = new System.Drawing.Point(105, 201);
             this.textBox_EraseSize.Name = "textBox_EraseSize";
-            this.textBox_EraseSize.Size = new System.Drawing.Size(100, 16);
+            this.textBox_EraseSize.Size = new System.Drawing.Size(100, 19);
             this.textBox_EraseSize.TabIndex = 14;
             this.toolTip1.SetToolTip(this.textBox_EraseSize, "HEX формат без префикса 0x");
             // 
@@ -521,7 +526,7 @@ namespace FatfsToSpiffsConverter
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel1.SetColumnSpan(this.label10, 2);
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Location = new System.Drawing.Point(1, 276);
@@ -550,10 +555,11 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_PathFatfs.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_PathFatfs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_PathFatfs.Location = new System.Drawing.Point(102, 311);
-            this.textBox_PathFatfs.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox_PathFatfs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_PathFatfs.Location = new System.Drawing.Point(105, 310);
+            this.textBox_PathFatfs.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.textBox_PathFatfs.Name = "textBox_PathFatfs";
-            this.textBox_PathFatfs.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PathFatfs.Size = new System.Drawing.Size(100, 19);
             this.textBox_PathFatfs.TabIndex = 21;
             this.toolTip1.SetToolTip(this.textBox_PathFatfs, "Например:\r\nsnd/en\r\nsnd\r\n/");
             // 
@@ -573,60 +579,36 @@ namespace FatfsToSpiffsConverter
             // 
             this.button_RemoveProfile.BackColor = System.Drawing.Color.Tomato;
             this.button_RemoveProfile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_RemoveProfile.Location = new System.Drawing.Point(289, 388);
+            this.button_RemoveProfile.Location = new System.Drawing.Point(289, 367);
             this.button_RemoveProfile.Name = "button_RemoveProfile";
-            this.button_RemoveProfile.Size = new System.Drawing.Size(177, 40);
+            this.button_RemoveProfile.Size = new System.Drawing.Size(177, 41);
             this.button_RemoveProfile.TabIndex = 24;
             this.button_RemoveProfile.Text = "Удалить профиль";
             this.button_RemoveProfile.UseVisualStyleBackColor = false;
-            // 
-            // button_SaveUser
-            // 
-            this.button_SaveUser.BackColor = System.Drawing.Color.SpringGreen;
-            this.button_SaveUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_SaveUser.Location = new System.Drawing.Point(4, 333);
-            this.button_SaveUser.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.button_SaveUser.Name = "button_SaveUser";
-            this.button_SaveUser.Size = new System.Drawing.Size(94, 30);
-            this.button_SaveUser.TabIndex = 22;
-            this.button_SaveUser.Text = "Сохранить";
-            this.button_SaveUser.UseVisualStyleBackColor = false;
             // 
             // button_AddToProfile
             // 
             this.button_AddToProfile.BackColor = System.Drawing.Color.LightGreen;
             this.button_AddToProfile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_AddToProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_AddToProfile.Location = new System.Drawing.Point(4, 388);
+            this.button_AddToProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_AddToProfile.Location = new System.Drawing.Point(4, 367);
             this.button_AddToProfile.Name = "button_AddToProfile";
-            this.button_AddToProfile.Size = new System.Drawing.Size(94, 40);
+            this.button_AddToProfile.Size = new System.Drawing.Size(94, 41);
             this.button_AddToProfile.TabIndex = 25;
-            this.button_AddToProfile.Text = "Добавить\r\nв профили";
+            this.button_AddToProfile.Text = "Сохранить";
             this.button_AddToProfile.UseVisualStyleBackColor = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tableLayoutPanel1.SetColumnSpan(this.label12, 2);
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(1, 364);
-            this.label12.Margin = new System.Windows.Forms.Padding(0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(284, 20);
-            this.label12.TabIndex = 26;
             // 
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(110, 401);
+            this.textBox2.Location = new System.Drawing.Point(110, 380);
             this.textBox2.Margin = new System.Windows.Forms.Padding(8, 5, 3, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(172, 16);
             this.textBox2.TabIndex = 27;
             this.textBox2.Tag = "";
-            this.textBox2.Text = "профиль_1";
+            this.textBox2.Text = "введитя имя профиля";
             this.toolTip1.SetToolTip(this.textBox2, "Введите имя профиля");
             this.textBox2.WordWrap = false;
             // 
@@ -634,21 +616,33 @@ namespace FatfsToSpiffsConverter
             // 
             this.textBox_PathSpiffs.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBox_PathSpiffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_PathSpiffs.Location = new System.Drawing.Point(105, 228);
+            this.textBox_PathSpiffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_PathSpiffs.Location = new System.Drawing.Point(105, 227);
             this.textBox_PathSpiffs.Name = "textBox_PathSpiffs";
-            this.textBox_PathSpiffs.Size = new System.Drawing.Size(100, 16);
+            this.textBox_PathSpiffs.Size = new System.Drawing.Size(100, 19);
             this.textBox_PathSpiffs.TabIndex = 28;
             this.toolTip1.SetToolTip(this.textBox_PathSpiffs, "Например:\r\nsnd/en\r\nsnd\r\n/");
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tableLayoutPanel1.SetColumnSpan(this.label14, 2);
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Location = new System.Drawing.Point(4, 333);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(278, 30);
+            this.label14.TabIndex = 29;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 471);
+            this.ClientSize = new System.Drawing.Size(484, 451);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(500, 510);
-            this.MinimumSize = new System.Drawing.Size(500, 510);
+            this.MaximumSize = new System.Drawing.Size(500, 490);
+            this.MinimumSize = new System.Drawing.Size(500, 490);
             this.Name = "MainForm";
             this.Text = "W25Qxxx_Flasher";
             this.tabControl1.ResumeLayout(false);
@@ -669,7 +663,6 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RadioButton radioButton_User;
         private System.Windows.Forms.RadioButton radioButton_Profile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -690,22 +683,22 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_PathFatfs;
-        private System.Windows.Forms.Button button_SaveUser;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_RemoveProfile;
         private System.Windows.Forms.Button button_AddToProfile;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox_PathSpiffs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox ComboBox_ComPorts;
-        private System.Windows.Forms.Label connectionLabel;
+        public System.Windows.Forms.Label connectionLabel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label_profileName;
         private System.Windows.Forms.Button button_StartFlash;
-        private System.Windows.Forms.Label label_Message;
+        private System.Windows.Forms.RadioButton radioButton_User;
+        private System.Windows.Forms.Label label14;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Label label_Message;
     }
 }
 

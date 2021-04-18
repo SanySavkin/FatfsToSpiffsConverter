@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FatfsToSpiffsConverter.Communication
 {
@@ -18,13 +20,20 @@ namespace FatfsToSpiffsConverter.Communication
         private Task m_currentThread;
         public ConcurrentQueue<byte[]> messagesQueueTx = new ConcurrentQueue<byte[]>();
         private MessagesProto m_msgProto;
-        private SerialPort port = null;
+        private SerialPort port;
         private byte[] rxBuffer = new byte[2048];
+
+        private MainForm m_mainForm;
 
         public ComPortProcess(MessagesProto proto)
         {
             m_msgProto = proto;
             Start();
+        }
+
+        public void SetForm(MainForm f)
+        {
+            m_mainForm = f;
         }
 
         private void Start()
@@ -39,23 +48,30 @@ namespace FatfsToSpiffsConverter.Communication
             }
         }
 
-        private void PortInit()
+        public static List<string> GetPorts()
         {
-            port = new SerialPort
+            string[] r = SerialPort.GetPortNames();
+            List<string> listStr = new List<string>();
+            foreach(var s in r)
             {
-                PortName = "COM3",
-                BaudRate = 115200
-            };
-            try
-            {
-                Console.WriteLine("Try opening port: " + port.PortName);
-                port.Open();
-                Console.WriteLine("port opened: " + port.PortName);
+                if (!listStr.Contains(s))
+                {
+                    listStr.Add(s);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            return listStr;
+        }
+
+        private SerialPort PortInit()
+        {
+            SerialPort p = new SerialPort();
+            p.PortName = "COM3";
+            p.BaudRate = 115200;
+
+            Console.WriteLine("Try opening port: " + p.PortName);
+            p.Open();
+            Console.WriteLine("port opened: " + p.PortName);
+            return p;
         }
 
         private void Processing(CancellationToken token)
@@ -64,40 +80,29 @@ namespace FatfsToSpiffsConverter.Communication
             {
                 try
                 {
-                    PortInit();
+                    Thread.Sleep(2000);
+                    port = PortInit();
+                    UpdateConnectionText();
                     ClearMessageQueue();
-                    if (port != null)
-                    {
-                        using (port)
+                    try
+                    {   
+                        while (port.IsOpen)
                         {
-                            try
-                            {
-                                //MessageWriteFolder msg = new MessageWriteFolder();
-                                //msg.srcPath = "Indoor/snd/en";
-                                //msg.dstPath = "snd/en";
-                                while (port.IsOpen)
-                                {
-                                    ReceiveDatFromPort();
-                                    SendDataToPort();
-                                    Thread.Sleep(2);
-                                }
-                            }
-                            catch (IOException ex)
-                            {
-                                Console.WriteLine(ex);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex);
-                            }
+                            ReceiveDatFromPort();
+                            SendDataToPort();
+                            Thread.Sleep(2);
                         }
+                    }
+                    finally
+                    {
+                        port.Close();
                     }
                 }
                 catch (IOException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                Thread.Sleep(2000);
+                UpdateConnectionText();
             }
         }
 
@@ -128,26 +133,40 @@ namespace FatfsToSpiffsConverter.Communication
             return true;
         }
 
-        //public byte[] GetPacket()
-        //{
-        //    byte[] data;
-        //    if (messagesQueueRx.TryPeek(out data))
-        //    {
-        //        uint len = BitConverter.ToUInt32(data, 0);
-        //        if (messagesQueueRx.Count * portReadBytesCount >= len + 4)
-        //        {
-        //            if (messagesQueueRx.TryDequeue(out data)}
-        //        }
-        //    }
-        //    return data;
-        //}
-
         private void ClearMessageQueue()
         {
             while(messagesQueueTx.Count != 0)
             {
                 byte[] data;
                 messagesQueueTx.TryDequeue(out data);
+            }
+        }
+
+        private void UpdateConnectionText()
+        {
+            if (m_mainForm == null) return;
+            var text = (port != null && port.IsOpen) ? "Подключен" : "Нет подключения";
+            SetControlPropertyThreadSafe(m_mainForm.connectionLabel, "Text", text);
+        }
+
+        private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);
+
+        public static void SetControlPropertyThreadSafe(Control control, string propertyName, object propertyValue)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(new SetControlPropertyThreadSafeDelegate
+                (SetControlPropertyThreadSafe),
+                new object[] { control, propertyName, propertyValue });
+            }
+            else
+            {
+                control.GetType().InvokeMember(
+                    propertyName,
+                    BindingFlags.SetProperty,
+                    null,
+                    control,
+                    new object[] { propertyValue });
             }
         }
     }
