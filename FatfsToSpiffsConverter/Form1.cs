@@ -10,12 +10,20 @@ namespace FatfsToSpiffsConverter
         public MainForm()
         {
             InitializeComponent();
+
             m_Proto = MessagesProto.Instance;
+
             m_Proto.SetForm(this);
+
             UserSettings userSet = Settings.Instance.UsSettings;
             MainSettings mainSet = Settings.Instance.MnSettings;
+
             label_profileName.Text = userSet.currentProfile;
-           
+
+            var profilesList = Settings.Instance.GetProfilesList();
+            comboBox_Profile.DataSource = profilesList;
+            comboBox_Profile.SelectedItem = userSet.currentProfile;
+
         }
 
         private void ComboBox_ComPorts_DropDown(object sender, EventArgs e)
@@ -57,6 +65,7 @@ namespace FatfsToSpiffsConverter
             UserSettings userSet = Settings.Instance.UsSettings;
             userSet.currentProfile = comboBox_Profile.SelectedItem.ToString();
             Settings.Instance.UsSettings = userSet;
+            label_profileName.Text = userSet.currentProfile;
         }
     }
 }

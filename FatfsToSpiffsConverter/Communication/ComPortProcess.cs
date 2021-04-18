@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -144,9 +145,22 @@ namespace FatfsToSpiffsConverter.Communication
 
         private void UpdateConnectionText()
         {
+            string text;
+            Color cl;
             if (m_mainForm == null) return;
-            var text = (port != null && port.IsOpen) ? "Подключен" : "Нет подключения";
+            bool ok = (port != null && port.IsOpen);
+            if (ok)
+            {
+                text = "Connected";
+                cl = Color.SpringGreen;
+            }
+            else
+            {
+                text = "No connected";
+                cl = Color.Red;
+            }
             SetControlPropertyThreadSafe(m_mainForm.connectionLabel, "Text", text);
+            SetControlPropertyThreadSafe(m_mainForm.connectionLabel, "ForeColor", cl);
         }
 
         private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);

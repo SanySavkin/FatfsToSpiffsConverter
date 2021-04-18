@@ -155,6 +155,7 @@ namespace FatfsToSpiffsConverter
             // 
             // ComboBox_ComPorts
             // 
+            this.ComboBox_ComPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_ComPorts.FormattingEnabled = true;
             this.ComboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
             this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(90, 0);
@@ -169,6 +170,7 @@ namespace FatfsToSpiffsConverter
             this.connectionLabel.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.connectionLabel, 2);
             this.connectionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.connectionLabel.ForeColor = System.Drawing.Color.SpringGreen;
             this.connectionLabel.Location = new System.Drawing.Point(3, 310);
             this.connectionLabel.Name = "connectionLabel";
             this.connectionLabel.Size = new System.Drawing.Size(464, 30);
@@ -180,9 +182,11 @@ namespace FatfsToSpiffsConverter
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(100, 13);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label13.Location = new System.Drawing.Point(81, 10);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(132, 17);
+            this.label13.Size = new System.Drawing.Size(151, 20);
             this.label13.TabIndex = 4;
             this.label13.Text = "Текущий профиль:";
             // 
@@ -190,9 +194,11 @@ namespace FatfsToSpiffsConverter
             // 
             this.label_profileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_profileName.AutoSize = true;
-            this.label_profileName.Location = new System.Drawing.Point(238, 13);
+            this.label_profileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_profileName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label_profileName.Location = new System.Drawing.Point(238, 10);
             this.label_profileName.Name = "label_profileName";
-            this.label_profileName.Size = new System.Drawing.Size(96, 17);
+            this.label_profileName.Size = new System.Drawing.Size(112, 20);
             this.label_profileName.TabIndex = 5;
             this.label_profileName.Text = "имя профиля";
             // 
@@ -354,6 +360,7 @@ namespace FatfsToSpiffsConverter
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_Profile.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox_Profile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Profile.FormattingEnabled = true;
             this.comboBox_Profile.Location = new System.Drawing.Point(306, 66);
             this.comboBox_Profile.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
