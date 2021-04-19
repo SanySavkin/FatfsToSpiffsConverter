@@ -46,7 +46,6 @@ namespace FatfsToSpiffsConverter
             this.radioButton_User = new System.Windows.Forms.RadioButton();
             this.radioButton_Profile = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.comboBox_Profile = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -71,6 +70,7 @@ namespace FatfsToSpiffsConverter
             this.label14 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label12 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -159,10 +159,10 @@ namespace FatfsToSpiffsConverter
             this.ComboBox_ComPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_ComPorts.FormattingEnabled = true;
             this.ComboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
-            this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(90, 0);
-            this.ComboBox_ComPorts.MinimumSize = new System.Drawing.Size(90, 0);
+            this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(80, 0);
+            this.ComboBox_ComPorts.MinimumSize = new System.Drawing.Size(80, 0);
             this.ComboBox_ComPorts.Name = "ComboBox_ComPorts";
-            this.ComboBox_ComPorts.Size = new System.Drawing.Size(90, 24);
+            this.ComboBox_ComPorts.Size = new System.Drawing.Size(80, 24);
             this.ComboBox_ComPorts.TabIndex = 2;
             this.ComboBox_ComPorts.DropDown += new System.EventHandler(this.ComboBox_ComPorts_DropDown);
             // 
@@ -208,11 +208,12 @@ namespace FatfsToSpiffsConverter
             this.button_StartFlash.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button_StartFlash.BackColor = System.Drawing.Color.SpringGreen;
             this.tableLayoutPanel2.SetColumnSpan(this.button_StartFlash, 2);
+            this.button_StartFlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_StartFlash.Location = new System.Drawing.Point(161, 63);
             this.button_StartFlash.Name = "button_StartFlash";
             this.button_StartFlash.Size = new System.Drawing.Size(147, 64);
             this.button_StartFlash.TabIndex = 6;
-            this.button_StartFlash.Text = "START";
+            this.button_StartFlash.Text = "Старт";
             this.button_StartFlash.UseVisualStyleBackColor = false;
             this.button_StartFlash.Click += new System.EventHandler(this.button_StartFlash_Click);
             // 
@@ -250,7 +251,6 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Controls.Add(this.radioButton_User, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.radioButton_Profile, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.comboBox_Profile, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
@@ -274,6 +274,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Controls.Add(this.textBox_PathSpiffs, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 12);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -338,23 +339,6 @@ namespace FatfsToSpiffsConverter
             this.label1.Size = new System.Drawing.Size(468, 30);
             this.label1.TabIndex = 2;
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel1.SetColumnSpan(this.label2, 2);
-            this.label2.Location = new System.Drawing.Point(1, 63);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 30);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Spiffs";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBox_Profile
             // 
@@ -543,7 +527,7 @@ namespace FatfsToSpiffsConverter
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(284, 30);
             this.label10.TabIndex = 19;
-            this.label10.Text = "Fatfs";
+            this.label10.Text = "FATFS";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
@@ -655,6 +639,21 @@ namespace FatfsToSpiffsConverter
             this.label12.Size = new System.Drawing.Size(183, 30);
             this.label12.TabIndex = 30;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox1, 2);
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Location = new System.Drawing.Point(1, 63);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.checkBox1.Size = new System.Drawing.Size(284, 30);
+            this.checkBox1.TabIndex = 31;
+            this.checkBox1.Text = "Использовать SPIFFS";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,7 +685,6 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.RadioButton radioButton_Profile;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox_Profile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -721,6 +719,7 @@ namespace FatfsToSpiffsConverter
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Label label_Message;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
