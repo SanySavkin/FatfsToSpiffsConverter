@@ -18,17 +18,39 @@ namespace FatfsToSpiffsConverter.Communication
     {
         private CancellationTokenSource m_source = new CancellationTokenSource();
         private static object m_lock = new object();
+        private static ComPortProcess m_instance;
         private Task m_currentThread;
         public ConcurrentQueue<byte[]> messagesQueueTx = new ConcurrentQueue<byte[]>();
         private MessagesProto m_msgProto;
         private SerialPort port;
         private byte[] rxBuffer = new byte[2048];
+        public bool portChanged = false;
 
 
-        public ComPortProcess(MessagesProto proto)
+        private ComPortProcess()
         {
-            m_msgProto = proto;
             Start();
+        }
+
+        public static ComPortProcess Instance
+        {
+            get
+            {
+                if (m_instance == null)
+                    lock (m_lock)
+                    {
+                        return m_instance ?? (m_instance = new ComPortProcess());
+                    }
+                return m_instance;
+            }
+        }
+
+        public MessagesProto ProtoInstance
+        {
+            set
+            {
+                m_msgProto = value;
+            }
         }
 
         private void Start()
@@ -59,8 +81,9 @@ namespace FatfsToSpiffsConverter.Communication
 
         private SerialPort PortInit()
         {
+            portChanged = false;
             SerialPort p = new SerialPort();
-            p.PortName = "COM3";
+            p.PortName = Settings.Instance.UsSettings.portName;
             p.BaudRate = 115200;
 
             Console.WriteLine("Try opening port: " + p.PortName);
@@ -77,11 +100,11 @@ namespace FatfsToSpiffsConverter.Communication
                 {
                     Thread.Sleep(2000);
                     port = PortInit();
-                    UpdateConnectionText();
+                    MainHandler.UpdateConnectionText("Connected");
                     ClearMessageQueue();
                     try
                     {   
-                        while (port.IsOpen)
+                        while (port.IsOpen && !portChanged)
                         {
                             ReceiveDatFromPort();
                             SendDataToPort();
@@ -97,7 +120,7 @@ namespace FatfsToSpiffsConverter.Communication
                 {
                     Console.WriteLine(ex.Message);
                 }
-                UpdateConnectionText();
+                MainHandler.UpdateConnectionText("No connected");
             }
         }
 
@@ -136,26 +159,5 @@ namespace FatfsToSpiffsConverter.Communication
                 messagesQueueTx.TryDequeue(out data);
             }
         }
-
-        private void UpdateConnectionText()
-        {
-            string text;
-            Color cl;
-            bool ok = (port != null && port.IsOpen);
-            if (ok)
-            {
-                text = "Connected";
-                cl = Color.SpringGreen;
-            }
-            else
-            {
-                text = "No connected";
-                cl = Color.Red;
-            }
-            MainHandler.SetControlPropertyThreadSafe(MainHandler.FormInstance.connectionLabel, "Text", text);
-            MainHandler.SetControlPropertyThreadSafe(MainHandler.FormInstance.connectionLabel, "ForeColor", cl);
-        }
-
-       
     }
 }

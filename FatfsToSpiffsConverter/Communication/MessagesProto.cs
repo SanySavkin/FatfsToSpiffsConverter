@@ -80,7 +80,8 @@ namespace FatfsToSpiffsConverter.Communication
 
         private MessagesProto()
         {
-            comPort = new ComPortProcess(this);
+            comPort = ComPortProcess.Instance;
+            comPort.ProtoInstance = this;
             Start();
         }
 

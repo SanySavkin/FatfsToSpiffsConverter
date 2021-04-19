@@ -1,6 +1,7 @@
 ﻿using FatfsToSpiffsConverter.Communication;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -104,6 +105,21 @@ namespace FatfsToSpiffsConverter
                     UpdateUIMessageText((ErrorList)msg.codeError);
                 }
             }
+        }
+
+        public static void UpdateConnectionText(string text)
+        {
+            Color cl;
+            if (text == "Connected")
+            {
+                cl = Color.SpringGreen;
+            }
+            else
+            {
+                cl = Color.Red;
+            }
+            SetControlPropertyThreadSafe(FormInstance.connectionLabel, "Text", text);
+            SetControlPropertyThreadSafe(FormInstance.connectionLabel, "ForeColor", cl);
         }
 
         public static void OnMessageFlashTypeReceived(MessageFlashType msg)

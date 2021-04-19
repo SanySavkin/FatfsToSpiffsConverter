@@ -35,7 +35,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label9 = new System.Windows.Forms.Label();
-            this.ComboBox_ComPorts = new System.Windows.Forms.ComboBox();
+            this.comboBox_ComPorts = new System.Windows.Forms.ComboBox();
             this.connectionLabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label_profileName = new System.Windows.Forms.Label();
@@ -110,7 +110,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.ComboBox_ComPorts, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.comboBox_ComPorts, 1, 7);
             this.tableLayoutPanel2.Controls.Add(this.connectionLabel, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label13, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label_profileName, 1, 0);
@@ -154,17 +154,18 @@ namespace FatfsToSpiffsConverter
             this.label9.Text = "Порт:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ComboBox_ComPorts
+            // comboBox_ComPorts
             // 
-            this.ComboBox_ComPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_ComPorts.FormattingEnabled = true;
-            this.ComboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
-            this.ComboBox_ComPorts.MaximumSize = new System.Drawing.Size(80, 0);
-            this.ComboBox_ComPorts.MinimumSize = new System.Drawing.Size(80, 0);
-            this.ComboBox_ComPorts.Name = "ComboBox_ComPorts";
-            this.ComboBox_ComPorts.Size = new System.Drawing.Size(80, 24);
-            this.ComboBox_ComPorts.TabIndex = 2;
-            this.ComboBox_ComPorts.DropDown += new System.EventHandler(this.ComboBox_ComPorts_DropDown);
+            this.comboBox_ComPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ComPorts.FormattingEnabled = true;
+            this.comboBox_ComPorts.Location = new System.Drawing.Point(238, 343);
+            this.comboBox_ComPorts.MaximumSize = new System.Drawing.Size(80, 0);
+            this.comboBox_ComPorts.MinimumSize = new System.Drawing.Size(80, 0);
+            this.comboBox_ComPorts.Name = "comboBox_ComPorts";
+            this.comboBox_ComPorts.Size = new System.Drawing.Size(80, 24);
+            this.comboBox_ComPorts.TabIndex = 2;
+            this.comboBox_ComPorts.DropDown += new System.EventHandler(this.ComboBox_ComPorts_DropDown);
+            this.comboBox_ComPorts.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ComPorts_SelectedIndexChanged);
             // 
             // connectionLabel
             // 
@@ -310,13 +311,13 @@ namespace FatfsToSpiffsConverter
             this.radioButton_User.Name = "radioButton_User";
             this.radioButton_User.Size = new System.Drawing.Size(279, 30);
             this.radioButton_User.TabIndex = 0;
-            this.radioButton_User.TabStop = true;
             this.radioButton_User.Text = "Создать профиль";
             this.radioButton_User.UseVisualStyleBackColor = false;
             // 
             // radioButton_Profile
             // 
             this.radioButton_Profile.AutoSize = true;
+            this.radioButton_Profile.Checked = true;
             this.radioButton_Profile.Location = new System.Drawing.Point(291, 35);
             this.radioButton_Profile.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.radioButton_Profile.Name = "radioButton_Profile";
@@ -643,8 +644,11 @@ namespace FatfsToSpiffsConverter
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBox1, 2);
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Enabled = false;
             this.checkBox1.Location = new System.Drawing.Point(1, 63);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.Name = "checkBox1";
@@ -709,7 +713,7 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.TextBox textBox_PathSpiffs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox ComboBox_ComPorts;
+        private System.Windows.Forms.ComboBox comboBox_ComPorts;
         public System.Windows.Forms.Label connectionLabel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label_profileName;
