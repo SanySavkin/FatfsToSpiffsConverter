@@ -70,6 +70,7 @@ namespace FatfsToSpiffsConverter
             this.textBox_PathSpiffs = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -217,15 +218,15 @@ namespace FatfsToSpiffsConverter
             // 
             // label_Message
             // 
-            this.label_Message.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label_Message.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.label_Message, 2);
-            this.label_Message.Location = new System.Drawing.Point(235, 160);
-            this.label_Message.Margin = new System.Windows.Forms.Padding(3, 30, 3, 0);
+            this.label_Message.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_Message.Location = new System.Drawing.Point(3, 150);
+            this.label_Message.Margin = new System.Windows.Forms.Padding(3, 20, 3, 20);
             this.label_Message.Name = "label_Message";
-            this.label_Message.Size = new System.Drawing.Size(0, 17);
+            this.label_Message.Size = new System.Drawing.Size(464, 80);
             this.label_Message.TabIndex = 7;
-            this.label_Message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Message.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tabPage2
             // 
@@ -272,6 +273,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 13);
             this.tableLayoutPanel1.Controls.Add(this.textBox_PathSpiffs, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 2, 12);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -636,10 +638,22 @@ namespace FatfsToSpiffsConverter
             this.label14.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.SetColumnSpan(this.label14, 2);
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(4, 333);
+            this.label14.Location = new System.Drawing.Point(1, 333);
+            this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(278, 30);
+            this.label14.Size = new System.Drawing.Size(284, 30);
             this.label14.TabIndex = 29;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Location = new System.Drawing.Point(286, 333);
+            this.label12.Margin = new System.Windows.Forms.Padding(0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(183, 30);
+            this.label12.TabIndex = 30;
             // 
             // MainForm
             // 
@@ -706,6 +720,7 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.Label label14;
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Label label_Message;
+        private System.Windows.Forms.Label label12;
     }
 }
 

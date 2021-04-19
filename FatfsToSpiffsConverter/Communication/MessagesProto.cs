@@ -76,12 +76,6 @@ namespace FatfsToSpiffsConverter.Communication
         private byte[] recivedDataBuffer = new byte[512];
         public int debugCountMessages = 0;
         public int debugCountErrorMessages = 0;
-        public bool isStarted = false;
-        public bool isSentWriteFolder = false;
-
-        private MainForm m_mainForm;
-
-
 
 
         private MessagesProto()
@@ -101,12 +95,6 @@ namespace FatfsToSpiffsConverter.Communication
                     }
                 return m_instance;
             }
-        }
-
-        public void SetForm(MainForm f)
-        {
-            comPort.SetForm(f);
-            m_mainForm = f;
         }
 
         private void Start()
@@ -207,11 +195,11 @@ namespace FatfsToSpiffsConverter.Communication
                 {
                     case MessagesId.MSG_ID_ERROR:
                         obj = (MessageError)Marshal.PtrToStructure(ptr, typeof(MessageError));
-                        OnMessageErrorReceived((MessageError)obj);
+                        MainHandler.OnMessageErrorReceived((MessageError)obj);
                         break;
                     case MessagesId.MSG_ID_GET_FLASH_TYPE:
                         obj = (MessageFlashType)Marshal.PtrToStructure(ptr, typeof(MessageFlashType));
-                        OnMessageFlashTypeReceived((MessageFlashType)obj);
+                        MainHandler.OnMessageFlashTypeReceived((MessageFlashType)obj);
                         break;
                     default:
                         debugCountErrorMessages++;
@@ -231,7 +219,7 @@ namespace FatfsToSpiffsConverter.Communication
         /// <param name="len">размер данных без значения размера всего пакета и msgId</param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public byte[] PutInOrder(MessagesId msgId, int len, byte[] data)
+        private byte[] PutInOrder(MessagesId msgId, int len, byte[] data)
         {
             byte[] arr = new byte[len + 8]; // длинна сообщения + sizeof(msgId) + sizeof(len)
             uint lenU = Convert.ToUInt32(len + 4); // lenU - размер сообщения плюс sizeof(msgId)
@@ -297,109 +285,6 @@ namespace FatfsToSpiffsConverter.Communication
                 return arr;
             }
         }
-
-        private void UpdateUiProgress(int value)
-        {
-            SetControlPropertyThreadSafe(m_mainForm.progressBar1, "Value", value);
-        }
-
-        private void UpdateUIMessageText(ErrorList code)
-        {
-            string text;
-            switch (code)
-            {
-                case ErrorList.GLOB_ERR_ALLOCATE_MEMORY:
-                    text = "Ошибка выделения памяти. \r\n Переподключите устройство.";
-                    break;
-                case ErrorList.GLOB_ERR_FILE_WRITE:
-                    text = "Ошибка записи в файловую систему Spiffs. \r\n Убедитесь что достаточно памяти для копирования всех файлов";
-                    break;
-                case ErrorList.GLOB_ERR_FLASH_PARAMETERS:
-                    text = "Ошибка параметров для Spiffs.";
-                    break;
-                case ErrorList.GLOB_ERR_HASH:
-                    text = "Ошибка контрольной суммы. \r\n Попробуйте еще раз.";
-                    break;
-                case ErrorList.GLOB_ERR_LONG_FILE_NAME:
-                    text = "Имя файла слишком большое.";
-                    break;
-                case ErrorList.GLOB_ERR_SPIFFS_FORMATING:
-                    text = "Ошибка форматирования.\r\n Попробуйте еще раз. ";
-                    break;
-                case ErrorList.GLOB_ERR_SPIFFS_MOUNTING:
-                    text = "Ошибка монтирования файловой системы.\r\n Попробуйте еще раз. ";
-                    break;
-                case ErrorList.GLOB_ERR_NONE:
-                    text = "Success!";
-                    break;
-                default:
-                    text = "Ошибка";
-                    break;
-            }
-            SetControlPropertyThreadSafe(m_mainForm.label_Message, "Text", text);
-        }
-
-        private void OnMessageErrorReceived(MessageError msg)
-        {
-            if (isStarted)
-            {
-                if((ErrorList)msg.codeError == ErrorList.GLOB_ERR_NONE)
-                {
-                    if (isStarted)
-                    {
-                        if (!isSentWriteFolder)
-                        {
-                            MainSettings mainSet = Settings.Instance.MnSettings;
-                            MessageWriteFolder msg2;
-                            msg2.srcPath = mainSet.pathFatfs;
-                            msg2.dstPath = mainSet.pathSpiffs;
-                            //msg2.srcPath ="test/snd/en";
-                            //msg2.dstPath = "snd/en";
-                            SendMessageWriteFolder(msg2);
-                            isSentWriteFolder = true;
-                            UpdateUiProgress(20);
-                        }
-                        else
-                        {
-                            isSentWriteFolder = false;
-                            isStarted = false;
-                            UpdateUIMessageText((ErrorList)msg.codeError);
-                        }
-                    }
-                }
-                else
-                {
-                    UpdateUIMessageText((ErrorList)msg.codeError);
-                }
-            }
-        }
-
-        private void OnMessageFlashTypeReceived(MessageFlashType msg)
-        {
-
-        }
-
-        private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);
-
-        public void SetControlPropertyThreadSafe(Control control, string propertyName, object propertyValue)
-        {
-            if (control.InvokeRequired)
-            {
-                control.Invoke(new SetControlPropertyThreadSafeDelegate
-                (SetControlPropertyThreadSafe),
-                new object[] { control, propertyName, propertyValue });
-            }
-            else
-            {
-                control.GetType().InvokeMember(
-                    propertyName,
-                    BindingFlags.SetProperty,
-                    null,
-                    control,
-                    new object[] { propertyValue });
-            }
-        }
-
     }
 
     public static class TimeoutsCheck

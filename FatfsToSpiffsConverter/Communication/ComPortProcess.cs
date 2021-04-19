@@ -24,17 +24,11 @@ namespace FatfsToSpiffsConverter.Communication
         private SerialPort port;
         private byte[] rxBuffer = new byte[2048];
 
-        private MainForm m_mainForm;
 
         public ComPortProcess(MessagesProto proto)
         {
             m_msgProto = proto;
             Start();
-        }
-
-        public void SetForm(MainForm f)
-        {
-            m_mainForm = f;
         }
 
         private void Start()
@@ -147,7 +141,6 @@ namespace FatfsToSpiffsConverter.Communication
         {
             string text;
             Color cl;
-            if (m_mainForm == null) return;
             bool ok = (port != null && port.IsOpen);
             if (ok)
             {
@@ -159,29 +152,10 @@ namespace FatfsToSpiffsConverter.Communication
                 text = "No connected";
                 cl = Color.Red;
             }
-            SetControlPropertyThreadSafe(m_mainForm.connectionLabel, "Text", text);
-            SetControlPropertyThreadSafe(m_mainForm.connectionLabel, "ForeColor", cl);
+            MainHandler.SetControlPropertyThreadSafe(MainHandler.FormInstance.connectionLabel, "Text", text);
+            MainHandler.SetControlPropertyThreadSafe(MainHandler.FormInstance.connectionLabel, "ForeColor", cl);
         }
 
-        private delegate void SetControlPropertyThreadSafeDelegate(Control control, string propertyName, object propertyValue);
-
-        public static void SetControlPropertyThreadSafe(Control control, string propertyName, object propertyValue)
-        {
-            if (control.InvokeRequired)
-            {
-                control.Invoke(new SetControlPropertyThreadSafeDelegate
-                (SetControlPropertyThreadSafe),
-                new object[] { control, propertyName, propertyValue });
-            }
-            else
-            {
-                control.GetType().InvokeMember(
-                    propertyName,
-                    BindingFlags.SetProperty,
-                    null,
-                    control,
-                    new object[] { propertyValue });
-            }
-        }
+       
     }
 }

@@ -11,9 +11,9 @@ namespace FatfsToSpiffsConverter
         {
             InitializeComponent();
 
-            m_Proto = MessagesProto.Instance;
+            MainHandler.FormInstance = this;
 
-            m_Proto.SetForm(this);
+            m_Proto = MessagesProto.Instance;            
 
             UserSettings userSet = Settings.Instance.UsSettings;
             MainSettings mainSet = Settings.Instance.MnSettings;
@@ -50,7 +50,7 @@ namespace FatfsToSpiffsConverter
             //msg.logBlockSize = 0x1000;
             //msg.allowFormating = 0;
 
-            m_Proto.isStarted = true;
+            MainHandler.isStarted = true;
             m_Proto.SendMessageSettings(msg);
         }
 
