@@ -36,6 +36,7 @@ namespace FatfsToSpiffsConverter
         private void ComboBox_ComPorts_DropDown(object sender, EventArgs e)
         {
             comPortsList = ComPortProcess.GetPorts();
+            comboBox_ComPorts.DataSource = comPortsList;
         }
 
         private void ComboBox_ComPorts_SelectedIndexChanged(object sender, EventArgs e)
