@@ -45,9 +45,9 @@ namespace FatfsToSpiffsConverter
         private static readonly string mainSettingsFileName = "Settings.xml";
         private static readonly string userSettingsFileName = "UserSettings.xml";
 
-        private static readonly string indoorTagerProfileName = "indoor_tager_3_0";
-        private static readonly string indoorVestProfileName = "indoor_vest_3_0";
-        private static readonly string outdoorTagerProfileName = "outdoor_tager";
+        public static readonly string indoorTagerProfileName = "indoor_tager_3_0";
+        public static readonly string indoorVestProfileName = "indoor_vest_3_0";
+        public static readonly string outdoorTagerProfileName = "outdoor_tager";
 
         private static readonly string rootElementNameMain = "Profiles";
         private static readonly string rootElementNameUser = "Settings";
@@ -107,7 +107,7 @@ namespace FatfsToSpiffsConverter
             {
                 lock (lockMainSet)
                 {
-                    SaveSettings(value, UsSettings.currentProfile);
+                    SaveProfile(value, UsSettings.currentProfile);
                 }
             }
         }       
@@ -140,9 +140,9 @@ namespace FatfsToSpiffsConverter
             XElement root = new XElement(rootElementNameMain);
             xdoc.Add(root);
             xdoc.Save(path);
-            SaveSettings(DefaultSettings.indoorTager3_0 ,indoorTagerProfileName);
-            SaveSettings(DefaultSettings.indoorVest3_0, indoorVestProfileName);
-            SaveSettings(DefaultSettings.outdoorTager, outdoorTagerProfileName);
+            SaveProfile(DefaultSettings.indoorTager3_0 ,indoorTagerProfileName);
+            SaveProfile(DefaultSettings.indoorVest3_0, indoorVestProfileName);
+            SaveProfile(DefaultSettings.outdoorTager, outdoorTagerProfileName);
         }
 
         private bool IsExistElementName(XDocument xdoc, string name)
@@ -158,7 +158,7 @@ namespace FatfsToSpiffsConverter
             return false;
         }
 
-        public bool SaveSettings(MainSettings set, string profileName)
+        public bool SaveProfile(MainSettings set, string profileName)
         {
             try
             {
@@ -192,6 +192,32 @@ namespace FatfsToSpiffsConverter
 
             }
             return false;
+        }
+
+        public bool RemoveProfile(string profileName)
+        {
+            XDocument xdoc;
+            var path = Path.Combine(GetSettingsDir, mainSettingsFileName);
+            if (!File.Exists(path))
+            {
+                CreateDefXmlDocMain(path);
+                return false;
+            }
+            xdoc = XDocument.Load(path);
+            XElement root = xdoc.Element(rootElementNameMain);
+            if (!IsExistElementName(xdoc, profileName)) return false;
+
+            foreach (XElement xe in root.Elements("profile").ToList())
+            {
+                if (xe.Attribute("name").Value == profileName)
+                {
+                    xe.Remove();
+                    break;
+                }
+            }
+
+            xdoc.Save(path);
+            return true;
         }
 
         private bool SaveSettings(UserSettings set)

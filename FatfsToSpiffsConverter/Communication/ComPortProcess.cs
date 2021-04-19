@@ -84,7 +84,6 @@ namespace FatfsToSpiffsConverter.Communication
             portChanged = false;
             SerialPort p = new SerialPort();
             p.PortName = Settings.Instance.UsSettings.portName;
-            p.BaudRate = 115200;
 
             Console.WriteLine("Try opening port: " + p.PortName);
             p.Open();
@@ -114,6 +113,7 @@ namespace FatfsToSpiffsConverter.Communication
                     finally
                     {
                         port.Close();
+                        GC.Collect();
                     }
                 }
                 catch (IOException ex)

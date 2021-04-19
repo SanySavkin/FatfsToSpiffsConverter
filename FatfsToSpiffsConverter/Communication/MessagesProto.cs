@@ -23,6 +23,7 @@ namespace FatfsToSpiffsConverter.Communication
         GLOB_ERR_FILE_WRITE = 7,
         GLOB_ERR_NOT_A_FILES = 8,
         GLOB_ERR_HASH = 9,
+        GLOB_ERR_TIMEOUT = 10,
     }
 
    public enum MessagesId
@@ -76,6 +77,7 @@ namespace FatfsToSpiffsConverter.Communication
         private byte[] recivedDataBuffer = new byte[512];
         public int debugCountMessages = 0;
         public int debugCountErrorMessages = 0;
+        private static System.Timers.Timer aTimer;
 
 
         private MessagesProto()
@@ -130,7 +132,7 @@ namespace FatfsToSpiffsConverter.Communication
         {
             if (messagesQueueRx.IsEmpty)
             {
-                TimeoutsCheck.ResetTimer();
+                Timer.ResetTimer(aTimer);
             }
         }
 
@@ -145,7 +147,7 @@ namespace FatfsToSpiffsConverter.Communication
 
         private void Processing(CancellationToken token)
         {
-            TimeoutsCheck.StartTimer(RxControlTimerElapsedClbck);
+            Timer.StartTimer(RxControlTimerElapsedClbck, out aTimer, 2000);
             while (!token.IsCancellationRequested)
             {
                 try
@@ -176,7 +178,7 @@ namespace FatfsToSpiffsConverter.Communication
                         while (!messagesQueueRx.TryDequeue(out msgB[idx])) ;
                     }
                     MessageParse(msgB);
-                    TimeoutsCheck.ResetTimer();
+                    Timer.ResetTimer(aTimer);
                 }
                
             }
@@ -286,28 +288,5 @@ namespace FatfsToSpiffsConverter.Communication
                 return arr;
             }
         }
-    }
-
-    public static class TimeoutsCheck
-    {
-        private static System.Timers.Timer aTimer;
-
-
-        /// <summary>
-        /// контроль таймаута приема данных
-        /// </summary>
-        public static void StartTimer(ElapsedEventHandler handler)
-        {
-            aTimer = new System.Timers.Timer(2000);
-            aTimer.AutoReset = true;
-            aTimer.Elapsed += handler;
-            aTimer.Start();
-        }
-
-        public static void ResetTimer()
-        {
-            aTimer.Stop();
-            aTimer.Start();
-        }        
     }
 }
