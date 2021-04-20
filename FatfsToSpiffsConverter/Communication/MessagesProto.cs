@@ -38,6 +38,7 @@ namespace FatfsToSpiffsConverter.Communication
         MSG_ID_GET_FLASH_TYPE,
         MSG_ID_WRITE_FOLDER,
         MSG_ID_SPIFFS_SETTINGS,
+        MSG_ID_PING,
     }
     
     public struct MessageError
@@ -64,7 +65,12 @@ namespace FatfsToSpiffsConverter.Communication
     {
         public string srcPath;
         public string dstPath;
-    }   
+    }
+    
+    public struct MessagePing
+    {
+        public uint senderId;
+    }
 
     public class MessagesProto: IProto
     {
@@ -204,7 +210,12 @@ namespace FatfsToSpiffsConverter.Communication
                         obj = (MessageFlashType)Marshal.PtrToStructure(ptr, typeof(MessageFlashType));
                         MainHandler.OnMessageFlashTypeReceived((MessageFlashType)obj);
                         break;
+                    case MessagesId.MSG_ID_PING:
+                        obj = (MessagePing)Marshal.PtrToStructure(ptr, typeof(MessagePing));
+                        MainHandler.OnMessagePingReceived((MessagePing)obj);
+                        break;
                     default:
+                        ClearMessageQueue();
                         debugCountErrorMessages++;
                         break;
                 }
@@ -245,11 +256,16 @@ namespace FatfsToSpiffsConverter.Communication
             return ProtoSend(MessagesId.MSG_ID_SPIFFS_SETTINGS, msg);
         }
 
+        public bool SendMessagePing(MessagePing msg)
+        {
+            return ProtoSend(MessagesId.MSG_ID_PING, msg);
+        }
+
         private bool ProtoSend(MessagesId id, object obj)
         {
-            var b = GetBytes(obj);
-            var d = PutInOrder(id, b.Length, b);
-            return Send(d);
+            var bytes = GetBytes(obj);
+            var data = PutInOrder(id, bytes.Length, bytes);
+            return Send(data);
         }
 
         private byte[] GetBytes(object obj)

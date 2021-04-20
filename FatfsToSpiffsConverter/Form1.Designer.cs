@@ -111,11 +111,11 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.comboBox_ComPorts, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.connectionLabel, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label_profileName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.button_StartFlash, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label_Message, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.connectionLabel, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.label_profileName, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -146,10 +146,11 @@ namespace FatfsToSpiffsConverter
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(187, 343);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(168, 343);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 15, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 17);
+            this.label9.Size = new System.Drawing.Size(52, 20);
             this.label9.TabIndex = 1;
             this.label9.Text = "Порт:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -172,41 +173,48 @@ namespace FatfsToSpiffsConverter
             this.connectionLabel.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.connectionLabel, 2);
             this.connectionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectionLabel.ForeColor = System.Drawing.Color.SpringGreen;
-            this.connectionLabel.Location = new System.Drawing.Point(3, 310);
+            this.connectionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.connectionLabel.ForeColor = System.Drawing.Color.Red;
+            this.connectionLabel.Location = new System.Drawing.Point(0, 370);
+            this.connectionLabel.Margin = new System.Windows.Forms.Padding(0);
             this.connectionLabel.Name = "connectionLabel";
-            this.connectionLabel.Size = new System.Drawing.Size(464, 30);
+            this.connectionLabel.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.connectionLabel.Size = new System.Drawing.Size(470, 42);
             this.connectionLabel.TabIndex = 3;
-            this.connectionLabel.Text = "Connected";
-            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.connectionLabel.Text = "нет подключения";
+            this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.label13, 2);
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label13.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label13.Location = new System.Drawing.Point(81, 10);
+            this.label13.Location = new System.Drawing.Point(3, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(151, 20);
+            this.label13.Size = new System.Drawing.Size(464, 30);
             this.label13.TabIndex = 4;
             this.label13.Text = "Текущий профиль:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_profileName
             // 
-            this.label_profileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_profileName.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.label_profileName, 2);
+            this.label_profileName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_profileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_profileName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label_profileName.Location = new System.Drawing.Point(238, 10);
+            this.label_profileName.Location = new System.Drawing.Point(3, 30);
             this.label_profileName.Name = "label_profileName";
-            this.label_profileName.Size = new System.Drawing.Size(112, 20);
+            this.label_profileName.Size = new System.Drawing.Size(464, 30);
             this.label_profileName.TabIndex = 5;
             this.label_profileName.Text = "имя профиля";
+            this.label_profileName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button_StartFlash
             // 
-            this.button_StartFlash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button_StartFlash.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_StartFlash.BackColor = System.Drawing.Color.SpringGreen;
             this.tableLayoutPanel2.SetColumnSpan(this.button_StartFlash, 2);
             this.button_StartFlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -223,6 +231,7 @@ namespace FatfsToSpiffsConverter
             this.label_Message.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.label_Message, 2);
             this.label_Message.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_Message.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_Message.Location = new System.Drawing.Point(3, 150);
             this.label_Message.Margin = new System.Windows.Forms.Padding(3, 20, 3, 20);
             this.label_Message.Name = "label_Message";
@@ -703,7 +712,6 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.TextBox textBox_EraseSize;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox checkBox_FormatingSpiffs;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_PathFatfs;
@@ -727,6 +735,7 @@ namespace FatfsToSpiffsConverter
         public System.Windows.Forms.ComboBox comboBox_ComPorts;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.CheckBox checkBox_FormatingSpiffs;
     }
 }
 

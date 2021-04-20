@@ -97,10 +97,10 @@ namespace FatfsToSpiffsConverter.Communication
             {
                 try
                 {
-                    Thread.Sleep(2000);
-                    port = PortInit();
-                    MainHandler.UpdateConnectionText("Connected");
+                    Thread.Sleep(1000);
                     ClearMessageQueue();
+                    port = PortInit();
+                    MainHandler.Connect();
                     try
                     {   
                         while (port.IsOpen && !portChanged)
@@ -120,7 +120,7 @@ namespace FatfsToSpiffsConverter.Communication
                 {
                     Console.WriteLine(ex.Message);
                 }
-                MainHandler.UpdateConnectionText("No connected");
+                MainHandler.Disconnect();
             }
         }
 
