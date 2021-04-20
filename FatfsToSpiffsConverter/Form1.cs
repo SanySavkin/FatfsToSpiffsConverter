@@ -60,6 +60,11 @@ namespace FatfsToSpiffsConverter
             MainHandler.StartFlash();
         }
 
+        private void button_imageTabStart_Click(object sender, EventArgs e)
+        {
+            MainHandler.StartWriteImage();
+        }
+
         private void comboBox_Profile_SelectedIndexChanged(object sender, EventArgs e)
         {
             UserSettings userSet = Settings.Instance.UsSettings;
@@ -202,6 +207,6 @@ namespace FatfsToSpiffsConverter
             }
         }
 
-
+        
     }
 }

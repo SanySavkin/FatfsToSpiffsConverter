@@ -69,20 +69,32 @@ namespace FatfsToSpiffsConverter
             this.textBox_PathSpiffs = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_useSpiffs = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox_imageTabPath = new System.Windows.Forms.TextBox();
+            this.button_imageTabStart = new System.Windows.Forms.Button();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label_ImageTabMessageText = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.ItemSize = new System.Drawing.Size(70, 25);
@@ -222,7 +234,7 @@ namespace FatfsToSpiffsConverter
             this.button_StartFlash.Name = "button_StartFlash";
             this.button_StartFlash.Size = new System.Drawing.Size(147, 64);
             this.button_StartFlash.TabIndex = 6;
-            this.button_StartFlash.Text = "Старт";
+            this.button_StartFlash.Text = "Начать";
             this.button_StartFlash.UseVisualStyleBackColor = false;
             this.button_StartFlash.Click += new System.EventHandler(this.button_StartFlash_Click);
             // 
@@ -284,7 +296,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.Controls.Add(this.textBox_PathSpiffs, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.label12, 2, 12);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.checkBox_useSpiffs, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -564,7 +576,7 @@ namespace FatfsToSpiffsConverter
             this.textBox_PathFatfs.Name = "textBox_PathFatfs";
             this.textBox_PathFatfs.Size = new System.Drawing.Size(180, 16);
             this.textBox_PathFatfs.TabIndex = 21;
-            this.toolTip1.SetToolTip(this.textBox_PathFatfs, "Например:\r\nsnd/en\r\nsnd\r\n/");
+            this.toolTip1.SetToolTip(this.textBox_PathFatfs, "Например:\r\nsnd/en\r\nsnd");
             // 
             // pictureBox1
             // 
@@ -628,7 +640,7 @@ namespace FatfsToSpiffsConverter
             this.textBox_PathSpiffs.Name = "textBox_PathSpiffs";
             this.textBox_PathSpiffs.Size = new System.Drawing.Size(177, 16);
             this.textBox_PathSpiffs.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.textBox_PathSpiffs, "Например:\r\nsnd/en\r\nsnd\r\n/");
+            this.toolTip1.SetToolTip(this.textBox_PathSpiffs, "Например:\r\nsnd/en\r\nsnd");
             // 
             // label14
             // 
@@ -653,23 +665,134 @@ namespace FatfsToSpiffsConverter
             this.label12.Size = new System.Drawing.Size(183, 30);
             this.label12.TabIndex = 30;
             // 
-            // checkBox1
+            // checkBox_useSpiffs
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tableLayoutPanel1.SetColumnSpan(this.checkBox1, 2);
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(1, 63);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.checkBox1.Size = new System.Drawing.Size(284, 30);
-            this.checkBox1.TabIndex = 31;
-            this.checkBox1.Text = "Использовать SPIFFS";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox_useSpiffs.AutoSize = true;
+            this.checkBox_useSpiffs.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBox_useSpiffs.Checked = true;
+            this.checkBox_useSpiffs.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBox_useSpiffs, 2);
+            this.checkBox_useSpiffs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox_useSpiffs.Location = new System.Drawing.Point(1, 63);
+            this.checkBox_useSpiffs.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBox_useSpiffs.Name = "checkBox_useSpiffs";
+            this.checkBox_useSpiffs.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.checkBox_useSpiffs.Size = new System.Drawing.Size(284, 30);
+            this.checkBox_useSpiffs.TabIndex = 31;
+            this.checkBox_useSpiffs.Text = "Использовать SPIFFS";
+            this.checkBox_useSpiffs.UseVisualStyleBackColor = false;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(476, 418);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Image";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_imageTabPath, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.button_imageTabStart, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.progressBar2, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label_ImageTabMessageText, 0, 5);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 7;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(470, 412);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(229, 40);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Сохранить на SD карте: images/";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.label15, 2);
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(464, 30);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Создать образ флеш-памяти";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox_imageTabPath
+            // 
+            this.textBox_imageTabPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_imageTabPath.Location = new System.Drawing.Point(241, 70);
+            this.textBox_imageTabPath.Margin = new System.Windows.Forms.Padding(6, 10, 20, 3);
+            this.textBox_imageTabPath.Name = "textBox_imageTabPath";
+            this.textBox_imageTabPath.Size = new System.Drawing.Size(209, 23);
+            this.textBox_imageTabPath.TabIndex = 2;
+            this.textBox_imageTabPath.Text = "image_1";
+            // 
+            // button_imageTabStart
+            // 
+            this.button_imageTabStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button_imageTabStart.BackColor = System.Drawing.Color.SpringGreen;
+            this.tableLayoutPanel3.SetColumnSpan(this.button_imageTabStart, 2);
+            this.button_imageTabStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_imageTabStart.Location = new System.Drawing.Point(160, 140);
+            this.button_imageTabStart.Margin = new System.Windows.Forms.Padding(0);
+            this.button_imageTabStart.MaximumSize = new System.Drawing.Size(30, 60);
+            this.button_imageTabStart.MinimumSize = new System.Drawing.Size(150, 65);
+            this.button_imageTabStart.Name = "button_imageTabStart";
+            this.button_imageTabStart.Size = new System.Drawing.Size(150, 65);
+            this.button_imageTabStart.TabIndex = 3;
+            this.button_imageTabStart.Text = "Начать";
+            this.button_imageTabStart.UseVisualStyleBackColor = false;
+            this.button_imageTabStart.Click += new System.EventHandler(this.button_imageTabStart_Click);
+            // 
+            // progressBar2
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.progressBar2, 2);
+            this.progressBar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar2.Location = new System.Drawing.Point(50, 314);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
+            this.progressBar2.MaximumSize = new System.Drawing.Size(0, 25);
+            this.progressBar2.MinimumSize = new System.Drawing.Size(0, 25);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(370, 25);
+            this.progressBar2.TabIndex = 4;
+            // 
+            // label_ImageTabMessageText
+            // 
+            this.label_ImageTabMessageText.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.label_ImageTabMessageText, 2);
+            this.label_ImageTabMessageText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_ImageTabMessageText.Location = new System.Drawing.Point(3, 210);
+            this.label_ImageTabMessageText.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+            this.label_ImageTabMessageText.Name = "label_ImageTabMessageText";
+            this.label_ImageTabMessageText.Size = new System.Drawing.Size(464, 96);
+            this.label_ImageTabMessageText.TabIndex = 5;
+            this.label_ImageTabMessageText.Text = "label16";
+            this.label_ImageTabMessageText.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // MainForm
             // 
@@ -690,12 +813,14 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.RadioButton radioButton_Profile;
         private System.Windows.Forms.Label label1;
@@ -730,12 +855,21 @@ namespace FatfsToSpiffsConverter
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Label label_Message;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.Button button_StartFlash;
         public System.Windows.Forms.ComboBox comboBox_ComPorts;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage2;
         public System.Windows.Forms.CheckBox checkBox_FormatingSpiffs;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TextBox textBox_imageTabPath;
+        public System.Windows.Forms.Button button_imageTabStart;
+        public System.Windows.Forms.ProgressBar progressBar2;
+        public System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.Label label_ImageTabMessageText;
+        public System.Windows.Forms.CheckBox checkBox_useSpiffs;
     }
 }
 

@@ -23,7 +23,8 @@ namespace FatfsToSpiffsConverter.Communication
         GLOB_ERR_FILE_WRITE = 7,
         GLOB_ERR_NOT_A_FILES = 8,
         GLOB_ERR_HASH = 9,
-        GLOB_ERR_TIMEOUT = 10,
+        GLOB_ERR_FLASH_NOT_ANSWER = 10,
+        GLOB_ERR_TIMEOUT = 11,
     }
 
    public enum MessagesId
@@ -39,6 +40,7 @@ namespace FatfsToSpiffsConverter.Communication
         MSG_ID_WRITE_FOLDER,
         MSG_ID_SPIFFS_SETTINGS,
         MSG_ID_PING,
+        MSG_ID_CREATE_IMAGE,
     }
     
     public struct MessageError
@@ -65,6 +67,12 @@ namespace FatfsToSpiffsConverter.Communication
     {
         public string srcPath;
         public string dstPath;
+    }
+
+    public struct MessageCreateImage
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string fileName;
     }
     
     public struct MessagePing
@@ -259,6 +267,11 @@ namespace FatfsToSpiffsConverter.Communication
         public bool SendMessagePing(MessagePing msg)
         {
             return ProtoSend(MessagesId.MSG_ID_PING, msg);
+        }
+
+        public bool SendMessageCreateImage(MessageCreateImage msg)
+        {
+            return ProtoSend(MessagesId.MSG_ID_CREATE_IMAGE, msg);
         }
 
         private bool ProtoSend(MessagesId id, object obj)
