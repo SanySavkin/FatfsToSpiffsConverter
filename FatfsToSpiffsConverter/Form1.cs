@@ -21,13 +21,13 @@ namespace FatfsToSpiffsConverter
 
             m_Proto = MessagesProto.Instance;            
 
-            UserSettings userSet = Settings.Instance.UsSettings;
-            MainSettings mainSet = Settings.Instance.MnSettings;
+            UserSettings userSet = Settings.UsSettings;
+            MainSettings mainSet = Settings.MnSettings;
 
             label_profileName.Text = userSet.currentProfile;
 
             Profiles_UpdateList();
-            SetParametersValues(mainSet);
+            SetSpiffsValues(mainSet);
 
             comPortsList = ComPortProcess.GetPorts();
             comboBox_ComPorts.DataSource = comPortsList;
@@ -42,16 +42,16 @@ namespace FatfsToSpiffsConverter
             isDropDownComPorts = true;
             comPortsList = ComPortProcess.GetPorts();
             comboBox_ComPorts.DataSource = comPortsList;
-            comboBox_ComPorts.SelectedItem = Settings.Instance.UsSettings.portName;
+            comboBox_ComPorts.SelectedItem = Settings.UsSettings.portName;
             isDropDownComPorts = false;
         }
 
         private void ComboBox_ComPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isDropDownComPorts) return;
-            UserSettings userSet = Settings.Instance.UsSettings;
+            UserSettings userSet = Settings.UsSettings;
             userSet.portName = comboBox_ComPorts.SelectedItem.ToString();
-            Settings.Instance.UsSettings = userSet;
+            Settings.UsSettings = userSet;
             ComPortProcess.Instance.portChanged = true;
         }
 
@@ -62,25 +62,26 @@ namespace FatfsToSpiffsConverter
 
         private void button_imageTabStart_Click(object sender, EventArgs e)
         {
-            MainHandler.StartWriteImage();
+            MainHandler.StartCreateImage();
         }
 
         private void comboBox_Profile_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UserSettings userSet = Settings.Instance.UsSettings;
+            UserSettings userSet = Settings.UsSettings;
             userSet.currentProfile = comboBox_Profile.SelectedItem.ToString();
-            Settings.Instance.UsSettings = userSet;
+            Settings.UsSettings = userSet;
 
             label_profileName.Text = userSet.currentProfile;
 
-            MainSettings mainSet = Settings.Instance.MnSettings;
-            SetParametersValues(mainSet);
+            MainSettings mainSet = Settings.MnSettings;
+            SetSpiffsValues(mainSet);
             SetProfile_UpdateUI();
         }
         private void radioButton_Profile_CheckedChanged(object sender, EventArgs e)
         {
-            CreateProfile_UpdateUI(!radioButton_Profile.Checked);
+            CreateProfile_UpdateUI(radioButton_CreateProfile.Checked);
             SetProfile_UpdateUI();
+            SetSpiffsValues(Settings.MnSettings);
         }
 
         private void button_AddToProfile_Click(object sender, EventArgs e)
@@ -101,17 +102,18 @@ namespace FatfsToSpiffsConverter
                         logPageSize = uint.Parse(textBox_PageSize.Text, System.Globalization.NumberStyles.HexNumber),
                         blockSize = uint.Parse(textBox_BlockSize.Text, System.Globalization.NumberStyles.HexNumber),
                         allowFormating = checkBox_FormatingSpiffs.Checked,
+                        useSpiffs = checkBox_useSpiffs.Checked,
                         pathSpiffs = textBox_PathSpiffs.Text,
                         pathFatfs = textBox_PathFatfs.Text
                     };
-                    if (Settings.Instance.SaveProfile(set, textBox_profileName.Text))
+                    if (Settings.SaveProfile(set, textBox_profileName.Text))
                     {
                         Profiles_UpdateList();
                         MessageBox.Show("Профиль успешно добавлен", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                     else
                     {
-                        MessageBox.Show("Ошибка!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        MessageBox.Show("Имя профиля уже существует!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
                 catch (Exception ex)
@@ -121,13 +123,18 @@ namespace FatfsToSpiffsConverter
                 textBox_profileName.Text = "введитя имя профиля";
             }
         }
+
         private void button_RemoveProfile_Click(object sender, EventArgs e)
         {
-            Settings.Instance.RemoveProfile(comboBox_Profile.SelectedItem.ToString());
-            Profiles_UpdateList();
-            MessageBox.Show("Профиль успешно удалён", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            var profName = Settings.UsSettings.currentProfile;
+            var res = MessageBox.Show("Удалить профиль: " + profName, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            if (res == DialogResult.Yes)
+            {
+                Settings.RemoveProfile(comboBox_Profile.SelectedItem.ToString());
+                Profiles_UpdateList();
+                MessageBox.Show("Профиль успешно удалён", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
         }
-
 
         private void textBox_profileName_GotFocus(object sender, EventArgs e)
         {
@@ -137,35 +144,47 @@ namespace FatfsToSpiffsConverter
         private void textBox_profileName_LostFocus(object sender, EventArgs e)
         {
             if(textBox_profileName.Text == "") textBox_profileName.Text = "введитя имя профиля";
-        }        
+        }
+
+        private void checkBox_useSpiffs_CheckedChanged(object sender, EventArgs e)
+        {
+            CreateProfile_UpdateUI(radioButton_CreateProfile.Checked);
+        }
 
         private void CreateProfile_UpdateUI(bool st)
         {
-            label3.Enabled = st;
-            label4.Enabled = st;
-            label5.Enabled = st;
-            label6.Enabled = st;
-            label7.Enabled = st;
-            label8.Enabled = st;
+            var isEnSpiffsVal = checkBox_useSpiffs.Checked && st;
+
+            label3.Enabled = isEnSpiffsVal;
+            label4.Enabled = isEnSpiffsVal;
+            label5.Enabled = isEnSpiffsVal;
+            label6.Enabled = isEnSpiffsVal;
+            label7.Enabled = isEnSpiffsVal;
+            label8.Enabled = isEnSpiffsVal;
+                      
+
+            textBox_BlockSize.Enabled = isEnSpiffsVal;
+            textBox_EraseSize.Enabled = isEnSpiffsVal;
+            textBox_FlashSize.Enabled = isEnSpiffsVal;
+            textBox_PageSize.Enabled = isEnSpiffsVal;            
+            textBox_PathSpiffs.Enabled = isEnSpiffsVal;
+            textBox_StartAddress.Enabled = isEnSpiffsVal;
+            checkBox_FormatingSpiffs.Enabled = isEnSpiffsVal;
+
+
             label10.Enabled = st;
             label11.Enabled = st;
-
-            textBox_BlockSize.Enabled = st;
-            textBox_EraseSize.Enabled = st;
-            textBox_FlashSize.Enabled = st;
-            textBox_PageSize.Enabled = st;
             textBox_PathFatfs.Enabled = st;
-            textBox_PathSpiffs.Enabled = st;
-            textBox_StartAddress.Enabled = st;
             textBox_profileName.Enabled = st;
 
-            checkBox_FormatingSpiffs.Enabled = st;
+            checkBox_useSpiffs.Enabled = st;
+            
             button_AddToProfile.Enabled = st;
             if (st) button_AddToProfile.BackColor = System.Drawing.Color.LightGreen;
             else button_AddToProfile.BackColor = System.Drawing.Color.LightGray;
         }
 
-        private void SetParametersValues(MainSettings set)
+        private void SetSpiffsValues(MainSettings set)
         {
             textBox_BlockSize.Text = set.blockSize.ToString("X");
             textBox_EraseSize.Text = set.eraseSize.ToString("X");
@@ -175,12 +194,13 @@ namespace FatfsToSpiffsConverter
             textBox_PathFatfs.Text = set.pathFatfs;
             textBox_PathSpiffs.Text = set.pathSpiffs;
             checkBox_FormatingSpiffs.Checked = set.allowFormating;
+            checkBox_useSpiffs.Checked = set.useSpiffs;
         }
 
         private void Profiles_UpdateList()
         {
-            UserSettings userSet = Settings.Instance.UsSettings;
-            profilesList = Settings.Instance.GetProfilesList();
+            UserSettings userSet = Settings.UsSettings;
+            profilesList = Settings.GetProfilesList();
             comboBox_Profile.DataSource = profilesList;
             comboBox_Profile.SelectedItem = userSet.currentProfile;
         }
@@ -192,7 +212,7 @@ namespace FatfsToSpiffsConverter
                 comboBox_Profile.Enabled = true;
                 button_RemoveProfile.BackColor = System.Drawing.Color.Red;
 
-                UserSettings userSet = Settings.Instance.UsSettings;
+                UserSettings userSet = Settings.UsSettings;
                 button_RemoveProfile.Enabled = userSet.currentProfile != Settings.indoorTagerProfileName &&
                 userSet.currentProfile != Settings.indoorVestProfileName &&
                 userSet.currentProfile != Settings.outdoorTagerProfileName;
@@ -207,6 +227,30 @@ namespace FatfsToSpiffsConverter
             }
         }
 
+        private bool StringIsOk(string str)
+        {
+            var symbolsOk = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+
+            if (str.Length > 1)
+            {
+                var last = str.Remove(0, str.Length - 1);
+                return symbolsOk.Contains(last);
+            }
+            else
+            {
+                return symbolsOk.Contains(str);
+            }
+        }
+
+        private void textBox_imageTabPath_TextChanged(object sender, EventArgs e)
+        {
+            var text = textBox_imageTabPath.Text;
+            if (!StringIsOk(text))
+            {
+                textBox_imageTabPath.Text = text.Remove(text.Length - 1);
+                MessageBox.Show("Недопустимый символ в имени файла");
+            }
+        }
         
     }
 }

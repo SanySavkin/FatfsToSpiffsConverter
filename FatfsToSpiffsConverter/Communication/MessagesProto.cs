@@ -24,7 +24,12 @@ namespace FatfsToSpiffsConverter.Communication
         GLOB_ERR_NOT_A_FILES = 8,
         GLOB_ERR_HASH = 9,
         GLOB_ERR_FLASH_NOT_ANSWER = 10,
-        GLOB_ERR_TIMEOUT = 11,
+        GLOB_ERR_OPEN_FILE = 11,
+        GLOB_ERR_IMAGE_NOT_CORRECT = 12,
+
+        //internal errors
+        GLOB_ERR_TIMEOUT = 120,
+        GLOB_ERR_DISCONNECT = 121,
     }
 
    public enum MessagesId

@@ -23,6 +23,7 @@ namespace FatfsToSpiffsConverter
         private static readonly string processing = "Подождите!";
         private static readonly string errorString = "Ошибка";
         private static readonly string warningNoConnection = "Сначала выберите порт и дождитесь сообщения \n\r" + connected;
+        private static readonly string imagesFolderName = "images/";
 
         private static MainForm m_mainForm;
 
@@ -31,8 +32,8 @@ namespace FatfsToSpiffsConverter
         public static bool isSentWriteFolderMessage = false;
         public static bool isConnectedDevice = false;
 
-        private static System.Timers.Timer timerTimeoutError;
-        private static System.Timers.Timer timerProgressBar;
+        private static System.Timers.Timer timerTimeoutError = new System.Timers.Timer();
+        private static System.Timers.Timer timerProgressBar = new System.Timers.Timer();
 
 
         public static MainForm FormInstance {
@@ -56,7 +57,6 @@ namespace FatfsToSpiffsConverter
             else if (isStartedCreateImage)
             {
                 StopCreateImage(ErrorList.GLOB_ERR_TIMEOUT);
-                isStartedCreateImage = false;
             }
            
             
@@ -89,8 +89,8 @@ namespace FatfsToSpiffsConverter
 
         private static void SetMessageTextFlashTab(string text, Color c)
         {
-            SetControlPropertyThreadSafe(m_mainForm.label_Message, "ForeColor", c);
-            SetControlPropertyThreadSafe(m_mainForm.label_Message, "Text", text);
+            SetControlPropertyThreadSafe(m_mainForm.label_flashTabMessage, "ForeColor", c);
+            SetControlPropertyThreadSafe(m_mainForm.label_flashTabMessage, "Text", text);
         }
         
         private static void SetMessageTextImageTab(string text, Color c)
@@ -105,7 +105,7 @@ namespace FatfsToSpiffsConverter
             {
                 Timer.StartTimer(TimeoutTimerElapsedClbck, out timerTimeoutError, 120000);
 
-                var messageText = m_mainForm.checkBox_FormatingSpiffs.Checked ? formatingString : processing;
+                var messageText = m_mainForm.checkBox_FormatingSpiffs.Checked && m_mainForm.checkBox_useSpiffs.Checked ? formatingString : processing;
 
                 SetMessageTextFlashTab(messageText, Color.DarkBlue);
                 SetControlPropertyThreadSafe(m_mainForm.button_StartFlash, "BackColor", Color.LightGray);
@@ -115,7 +115,7 @@ namespace FatfsToSpiffsConverter
                 SetControlPropertyThreadSafe(m_mainForm.tabPage3, "Enabled", false);
                 SetControlPropertyThreadSafe(m_mainForm.tabPage2, "Enabled", false);
 
-                MainSettings mainSet = Settings.Instance.MnSettings;
+                MainSettings mainSet = Settings.MnSettings;
                 MessageSettings msg;
                 msg.flashSize = mainSet.flashSize;
                 msg.spiffsAddr = mainSet.spiffsAddress;
@@ -125,7 +125,19 @@ namespace FatfsToSpiffsConverter
                 msg.allowFormating = Convert.ToUInt32(mainSet.allowFormating);
 
                 isStartedWrite = true;
-                MessagesProto.Instance.SendMessageSettings(msg);
+                if (mainSet.useSpiffs)
+                {
+                    MessagesProto.Instance.SendMessageSettings(msg);
+                }
+                else
+                {
+                    Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
+                    MessageWriteFolder msg2;
+                    msg2.dstPath = " ";
+                    msg2.srcPath = mainSet.pathFatfs;
+                    MessagesProto.Instance.SendMessageWriteFolder(msg2);
+                    isSentWriteFolderMessage = true;
+                }
             }
             else
             {
@@ -133,7 +145,7 @@ namespace FatfsToSpiffsConverter
             }
         }
 
-        public static void StartWriteImage()
+        public static void StartCreateImage()
         {
             if (isConnectedDevice)
             {
@@ -141,6 +153,7 @@ namespace FatfsToSpiffsConverter
                 Timer.StartTimer(TimeoutTimerElapsedClbck, out timerTimeoutError, 120000);
                 Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
 
+                SetControlPropertyThreadSafe(m_mainForm.progressBar2, "Value", 2);
                 SetControlPropertyThreadSafe(m_mainForm.tabPage1, "Enabled", false);
                 SetControlPropertyThreadSafe(m_mainForm.tabPage2, "Enabled", false);
                 SetControlPropertyThreadSafe(m_mainForm.button_imageTabStart, "Enabled", false);
@@ -150,7 +163,7 @@ namespace FatfsToSpiffsConverter
 
                 SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "ForeColor", Color.DarkBlue);
                 SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "Text", processing);
-                MessagesProto.Instance.SendMessageCreateImage(new MessageCreateImage() { fileName = m_mainForm.textBox_imageTabPath.Text });
+                MessagesProto.Instance.SendMessageCreateImage(new MessageCreateImage() { fileName = imagesFolderName + m_mainForm.textBox_imageTabPath.Text });
             }
             else
             {
@@ -165,13 +178,16 @@ namespace FatfsToSpiffsConverter
             timerProgressBar.Stop();
             UpdateUIMessageText(result);
 
-            SetControlPropertyThreadSafe(m_mainForm.progressBar2, "Value", 0);
+            var progBarVal = result == ErrorList.GLOB_ERR_NONE ? 100 : 0;
+
+            SetControlPropertyThreadSafe(m_mainForm.progressBar2, "Value", progBarVal);
             SetControlPropertyThreadSafe(m_mainForm.textBox_imageTabPath, "Enabled", true); ;
             SetControlPropertyThreadSafe(m_mainForm.button_imageTabStart, "BackColor", Color.SpringGreen);
             SetControlPropertyThreadSafe(m_mainForm.button_imageTabStart, "Enabled", true);
             SetControlPropertyThreadSafe(m_mainForm.tabPage1, "Enabled", true);
             SetControlPropertyThreadSafe(m_mainForm.tabPage2, "Enabled", true);
-            
+
+            isStartedCreateImage = false;
         }
 
         public static void StopFlash(ErrorList result)
@@ -180,25 +196,31 @@ namespace FatfsToSpiffsConverter
             timerProgressBar.Stop();
             UpdateUIMessageText(result);
 
+            var progBarVal = result == ErrorList.GLOB_ERR_NONE ? 100 : 0;
             SetControlPropertyThreadSafe(m_mainForm.button_StartFlash, "BackColor", Color.SpringGreen);
-            SetControlPropertyThreadSafe(m_mainForm.progressBar1, "Value", 0);
+            SetControlPropertyThreadSafe(m_mainForm.progressBar1, "Value", progBarVal);
             SetControlPropertyThreadSafe(m_mainForm.button_StartFlash, "Enabled", true);
             SetControlPropertyThreadSafe(m_mainForm.comboBox_ComPorts, "Enabled", true);
             SetControlPropertyThreadSafe(m_mainForm.tabPage3, "Enabled", true);
             SetControlPropertyThreadSafe(m_mainForm.tabPage2, "Enabled", true);
 
             isStartedWrite = false;
+            isSentWriteFolderMessage = false;
         }       
 
         public static void Connect()
         {
             MessagesProto.Instance.SendMessagePing(new MessagePing() { senderId = serverId });
+            SetControlPropertyThreadSafe(m_mainForm.label_flashTabMessage, "Text", " ");
+            SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "Text", " ");
         }
 
         public static void Disconnect()
         {
             isConnectedDevice = false;
             UpdateConnectionText(disconnected);
+            StopCreateImage(ErrorList.GLOB_ERR_DISCONNECT);
+            StopFlash(ErrorList.GLOB_ERR_DISCONNECT);
         }
 
         private static void UpdateUiProgress()
@@ -217,7 +239,7 @@ namespace FatfsToSpiffsConverter
             switch (code)
             {
                 case ErrorList.GLOB_ERR_ALLOCATE_MEMORY:
-                    text = "Ошибка выделения памяти. \r\n Переподключите кабель USB и попробуйте снова.";
+                    text = "Ошибка выделения памяти. \r\n Переподключите кабель USB и попробуйте снова";
                     break;
                 case ErrorList.GLOB_ERR_FILE_WRITE:
                     text = "Ошибка записи в файловую систему Spiffs. \r\n Убедитесь что достаточно памяти для копирования всех файлов";
@@ -229,23 +251,35 @@ namespace FatfsToSpiffsConverter
                     text = "Ошибка контрольной суммы. Попробуйте еще раз.\r\n Убедитесь в отсутсвии электромагнитных помех. Используйте шлейф минимальной длинны";
                     break;
                 case ErrorList.GLOB_ERR_LONG_FILE_NAME:
-                    text = "Имена файлов больше 32 символов не поддерживаются.";
+                    text = "Имена файлов больше 32 символов не поддерживаются";
                     break;
                 case ErrorList.GLOB_ERR_SPIFFS_FORMATING:
-                    text = "Ошибка форматирования.\r\n Попробуйте еще раз.";
+                    text = "Ошибка форматирования.\r\n Попробуйте еще раз";
                     break;
                 case ErrorList.GLOB_ERR_SPIFFS_MOUNTING:
-                    text = "Ошибка монтирования файловой системы.\r\n Попробуйте еще раз. ";
+                    text = "Ошибка монтирования файловой системы.\r\n Попробуйте еще раз";
                     break;
                 case ErrorList.GLOB_ERR_NONE:
                     color = Color.Green;
                     text = successString;
                     break;
                 case ErrorList.GLOB_ERR_TIMEOUT:
-                    text = "Время ожидания истекло. \r\n Переподключите кабель USB и попробуйте снова.";
+                    text = "Время ожидания истекло. \r\n Переподключите кабель USB и попробуйте снова";
                     break;
                 case ErrorList.GLOB_ERR_FLASH_NOT_ANSWER:
                     text = "Микросхема флеш-памяти не отвечает";
+                    break;
+                case ErrorList.GLOB_ERR_OPEN_FILE:
+                    text = "Файл на SD карте не найден";
+                    break;
+                case ErrorList.GLOB_ERR_FILE_READ:
+                    text = "Ошибка чтения файла. Попробуйте ещё раз";
+                    break;
+                case ErrorList.GLOB_ERR_DISCONNECT:
+                    text = "Соединение было потеряно";
+                    break;
+                case ErrorList.GLOB_ERR_IMAGE_NOT_CORRECT:
+                    text = "Файл образа некоректен";
                     break;
                 default:
                     text = errorString;
@@ -263,30 +297,21 @@ namespace FatfsToSpiffsConverter
             {
                 if ((ErrorList)msg.codeError == ErrorList.GLOB_ERR_NONE)
                 {
-                    if (!isSentWriteFolderMessage)
-                    {
-                        MainSettings mainSet = Settings.Instance.MnSettings;
-                        MessageWriteFolder msg2;
-
-                        if (m_mainForm.checkBox_useSpiffs.Checked)
+                        if (!isSentWriteFolderMessage)
                         {
+                            MainSettings mainSet = Settings.MnSettings;
+                            MessageWriteFolder msg2;
                             msg2.dstPath = mainSet.pathSpiffs;
+                            msg2.srcPath = mainSet.pathFatfs;
+                            MessagesProto.Instance.SendMessageWriteFolder(msg2);
+                            isSentWriteFolderMessage = true;
+                            SetMessageTextFlashTab(processing, Color.DarkBlue);
+                            Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
                         }
                         else
                         {
-                            msg2.dstPath = " ";
+                            StopFlash((ErrorList)msg.codeError);
                         }
-                        msg2.srcPath = mainSet.pathFatfs;
-                        MessagesProto.Instance.SendMessageWriteFolder(msg2);
-                        isSentWriteFolderMessage = true;
-                        SetMessageTextFlashTab(processing, Color.DarkBlue);
-                        Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
-                    }
-                    else
-                    {
-                        StopFlash((ErrorList)msg.codeError);
-                        isSentWriteFolderMessage = false;
-                    }
                 }
                 else
                 {

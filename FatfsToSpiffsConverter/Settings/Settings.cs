@@ -19,6 +19,7 @@ namespace FatfsToSpiffsConverter
         public uint blockSize;
         public uint eraseSize;
         public bool allowFormating;
+        public bool useSpiffs;
         public string pathSpiffs;
         public string pathFatfs;
     }
@@ -32,10 +33,9 @@ namespace FatfsToSpiffsConverter
 
 
 
-    public class Settings
+    public static class Settings
     {
 
-        private static Settings m_instance;
         private static readonly object m_lock = new object();
         private static readonly object lockMainSet = new object();
         private static readonly object lockUserSet = new object();
@@ -52,30 +52,11 @@ namespace FatfsToSpiffsConverter
         private static readonly string rootElementNameMain = "Profiles";
         private static readonly string rootElementNameUser = "Settings";
 
-        private UserSettings userSet = new UserSettings();
-        private MainSettings mainSet = new MainSettings();
+        private static UserSettings userSet = new UserSettings();
+        private static MainSettings mainSet = new MainSettings();
 
 
-
-        private Settings()
-        {
-
-        }
-
-        public static Settings Instance
-        {
-            get
-            {
-                if (m_instance == null)  
-                    lock (m_lock)
-                    {
-                        return m_instance ?? (m_instance = new Settings());
-                    }
-                return m_instance;
-            }
-        }
-
-        public UserSettings UsSettings
+        public static UserSettings UsSettings
         {
             get
             {
@@ -94,7 +75,7 @@ namespace FatfsToSpiffsConverter
             }
         }
 
-        public MainSettings MnSettings {
+        public static MainSettings MnSettings {
             get
             {
                 lock (lockMainSet)
@@ -112,7 +93,7 @@ namespace FatfsToSpiffsConverter
             }
         }       
 
-        public string GetSettingsDir
+        public static string GetSettingsDir
         {
             get
             {
@@ -124,7 +105,7 @@ namespace FatfsToSpiffsConverter
             }
         }
 
-        private void CreateDefXmlDocUser(string path)
+        private static void CreateDefXmlDocUser(string path)
         {
             XDocument xdoc = new XDocument();
             XElement root = new XElement(rootElementNameUser);
@@ -134,7 +115,7 @@ namespace FatfsToSpiffsConverter
             xdoc.Save(path);
         }
 
-        private void CreateDefXmlDocMain(string path)
+        private static void CreateDefXmlDocMain(string path)
         {
             XDocument xdoc = new XDocument();
             XElement root = new XElement(rootElementNameMain);
@@ -145,7 +126,7 @@ namespace FatfsToSpiffsConverter
             SaveProfile(DefaultSettings.outdoorTager, outdoorTagerProfileName);
         }
 
-        private bool IsExistElementName(XDocument xdoc, string name)
+        private static bool IsExistElementName(XDocument xdoc, string name)
         {
             XElement root = xdoc.Element(rootElementNameMain);
             foreach (XElement xe in root.Elements("profile").ToList())
@@ -158,7 +139,7 @@ namespace FatfsToSpiffsConverter
             return false;
         }
 
-        public bool SaveProfile(MainSettings set, string profileName)
+        public static bool SaveProfile(MainSettings set, string profileName)
         {
             try
             {
@@ -180,6 +161,7 @@ namespace FatfsToSpiffsConverter
                                 new XElement("blockSize", set.blockSize),
                                 new XElement("eraseSize", set.eraseSize),
                                 new XElement("allowFormating", set.allowFormating),
+                                new XElement("useSpiffs", set.useSpiffs),
                                 new XElement("pathSpiffs", set.pathSpiffs),
                                 new XElement("pathFatfs", set.pathFatfs)
                                 ));
@@ -194,7 +176,7 @@ namespace FatfsToSpiffsConverter
             return false;
         }
 
-        public bool RemoveProfile(string profileName)
+        public static bool RemoveProfile(string profileName)
         {
             XDocument xdoc;
             var path = Path.Combine(GetSettingsDir, mainSettingsFileName);
@@ -220,7 +202,7 @@ namespace FatfsToSpiffsConverter
             return true;
         }
 
-        private bool SaveSettings(UserSettings set)
+        private static bool SaveSettings(UserSettings set)
         {
             XDocument xdoc;
             var path = Path.Combine(GetSettingsDir, userSettingsFileName);
@@ -237,7 +219,7 @@ namespace FatfsToSpiffsConverter
             return true;
         }
 
-        private void ReadSettings()
+        private static void ReadSettings()
         {
             XDocument xdoc;
             var path = Path.Combine(GetSettingsDir, userSettingsFileName);
@@ -251,7 +233,7 @@ namespace FatfsToSpiffsConverter
             userSet.portName = root.Element("portName").Value;
         }
 
-        private MainSettings ReadSettings(string profileName)
+        private static MainSettings ReadSettings(string profileName)
         {
             XDocument xdoc;
             var path = Path.Combine(GetSettingsDir, mainSettingsFileName);
@@ -272,6 +254,7 @@ namespace FatfsToSpiffsConverter
                     mainSet.blockSize = Convert.ToUInt32(xe.Element("blockSize").Value);
                     mainSet.eraseSize = Convert.ToUInt32(xe.Element("eraseSize").Value);
                     mainSet.allowFormating = Convert.ToBoolean(xe.Element("allowFormating").Value);
+                    mainSet.useSpiffs = Convert.ToBoolean(xe.Element("useSpiffs").Value);
                     mainSet.pathSpiffs = xe.Element("pathSpiffs").Value;
                     mainSet.pathFatfs = xe.Element("pathFatfs").Value;
                 }
@@ -280,7 +263,7 @@ namespace FatfsToSpiffsConverter
             return mainSet;
         }
 
-        public List<string> GetProfilesList()
+        public static List<string> GetProfilesList()
         {
             XDocument xdoc;
             var path = Path.Combine(GetSettingsDir, mainSettingsFileName);

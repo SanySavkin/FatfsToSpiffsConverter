@@ -16,6 +16,7 @@ namespace FatfsToSpiffsConverter
             logPageSize = 0x200,
             blockSize = 0x1000,
             allowFormating = true,
+            useSpiffs = true,
             pathFatfs = "indoor/tager/snd",
             pathSpiffs = "snd"
         };
@@ -28,6 +29,7 @@ namespace FatfsToSpiffsConverter
             logPageSize = 0x400,
             blockSize = 0x1000,
             allowFormating = true,
+            useSpiffs = true,
             pathFatfs = "indoor/vest/snd",
             pathSpiffs = "snd"
         };
@@ -40,6 +42,7 @@ namespace FatfsToSpiffsConverter
             logPageSize = 0x100,
             blockSize = 0x1000,
             allowFormating = true,
+            useSpiffs = true,
             pathFatfs = "outdoor/tager/snd",
             pathSpiffs = "snd"
         };

@@ -83,7 +83,7 @@ namespace FatfsToSpiffsConverter.Communication
         {
             portChanged = false;
             SerialPort p = new SerialPort();
-            p.PortName = Settings.Instance.UsSettings.portName;
+            p.PortName = Settings.UsSettings.portName;
 
             Console.WriteLine("Try opening port: " + p.PortName);
             p.Open();
