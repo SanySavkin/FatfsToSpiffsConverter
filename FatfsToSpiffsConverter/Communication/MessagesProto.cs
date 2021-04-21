@@ -26,6 +26,7 @@ namespace FatfsToSpiffsConverter.Communication
         GLOB_ERR_FLASH_NOT_ANSWER = 10,
         GLOB_ERR_OPEN_FILE = 11,
         GLOB_ERR_IMAGE_NOT_CORRECT = 12,
+        GLOB_ERR_FILES_NOT_FOUNDED = 13,
 
         //internal errors
         GLOB_ERR_TIMEOUT = 120,

@@ -251,6 +251,11 @@ namespace FatfsToSpiffsConverter
                 MessageBox.Show("Недопустимый символ в имени файла");
             }
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var msg = Help.OpenFile();
+            if(msg != "") MessageBox.Show(msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+        }
     }
 }

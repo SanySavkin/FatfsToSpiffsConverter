@@ -281,6 +281,9 @@ namespace FatfsToSpiffsConverter
                 case ErrorList.GLOB_ERR_IMAGE_NOT_CORRECT:
                     text = "Файл образа некоректен";
                     break;
+                case ErrorList.GLOB_ERR_FILES_NOT_FOUNDED:
+                    text = "Ни один файл не найден. Проверьте наличие SD карты или наличие файлов";
+                    break;
                 default:
                     text = errorString;
                     break;

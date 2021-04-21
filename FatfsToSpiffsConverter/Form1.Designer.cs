@@ -79,6 +79,9 @@ namespace FatfsToSpiffsConverter
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label_ImageTabMessageText = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -87,6 +90,7 @@ namespace FatfsToSpiffsConverter
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -95,6 +99,7 @@ namespace FatfsToSpiffsConverter
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.ItemSize = new System.Drawing.Size(70, 25);
@@ -801,6 +806,28 @@ namespace FatfsToSpiffsConverter
             this.label_ImageTabMessageText.TabIndex = 5;
             this.label_ImageTabMessageText.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(476, 418);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Help";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGreen;
+            this.button1.Location = new System.Drawing.Point(180, 60);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 50);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -808,6 +835,7 @@ namespace FatfsToSpiffsConverter
             this.ClientSize = new System.Drawing.Size(484, 451);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.MaximumSize = new System.Drawing.Size(500, 490);
             this.MinimumSize = new System.Drawing.Size(500, 490);
             this.Name = "MainForm";
@@ -823,6 +851,7 @@ namespace FatfsToSpiffsConverter
             this.tabPage3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -877,6 +906,9 @@ namespace FatfsToSpiffsConverter
         public System.Windows.Forms.CheckBox checkBox_useSpiffs;
         public System.Windows.Forms.RadioButton radioButton_CreateProfile;
         public System.Windows.Forms.Label label_imagesFolder;
+        public System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button1;
     }
 }
 

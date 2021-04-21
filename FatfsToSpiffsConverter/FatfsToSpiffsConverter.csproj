@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communication\ComPortProcess.cs" />
+    <Compile Include="Help.cs" />
     <Compile Include="MainHandler.cs" />
     <Compile Include="Communication\MessagesProto.cs" />
     <Compile Include="Communication\IProto.cs" />
