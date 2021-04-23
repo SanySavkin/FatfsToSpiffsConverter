@@ -10,7 +10,7 @@ namespace FatfsToSpiffsConverter
 {
     public static class Help
     {
-        private static readonly string folderHelp = "Help";
+        private static readonly string folderHelp = "W25Qxxx_Flasher\\Help";
         private static readonly string helpFileName = "W25Qxxx_Flasher.pdf";
 
 
@@ -18,8 +18,7 @@ namespace FatfsToSpiffsConverter
         {
             get
             {
-                var assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                var path = Path.Combine(assemblyFolder, folderHelp);
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), folderHelp);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 return path;

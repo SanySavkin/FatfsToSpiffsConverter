@@ -26,7 +26,15 @@ namespace FatfsToSpiffsConverter
             {
                 if (createdNew)
                     // first instance
-                    Application.Run(new MainForm());
+                    try
+                    {
+                        Application.Run(new MainForm());
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    
                 else
                     MessageBox.Show("Программа уже запущена", programName, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }

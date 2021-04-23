@@ -41,7 +41,7 @@ namespace FatfsToSpiffsConverter
         private static readonly object lockUserSet = new object();
 
 
-        private static readonly string folderSettings = "Settings";
+        private static readonly string settingsFolder = "W25Qxxx_Flasher\\Settings";
         private static readonly string mainSettingsFileName = "Settings.xml";
         private static readonly string userSettingsFileName = "UserSettings.xml";
 
@@ -97,8 +97,7 @@ namespace FatfsToSpiffsConverter
         {
             get
             {
-                var assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                var path = Path.Combine(assemblyFolder, folderSettings);
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), settingsFolder);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 return path;
