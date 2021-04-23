@@ -25,6 +25,7 @@ namespace FatfsToSpiffsConverter.Communication
         private SerialPort port;
         private byte[] rxBuffer = new byte[2048];
         public bool portChanged = false;
+        private static TimeSpan portSerialDelay = TimeSpan.FromSeconds(2);
 
 
         private ComPortProcess()
@@ -97,7 +98,6 @@ namespace FatfsToSpiffsConverter.Communication
             {
                 try
                 {
-                    Thread.Sleep(1000);
                     ClearMessageQueue();
                     port = PortInit();
                     MainHandler.Connect();
@@ -113,14 +113,19 @@ namespace FatfsToSpiffsConverter.Communication
                     finally
                     {
                         port.Close();
-                        GC.Collect();
+                        //GC.Collect();
                     }
                 }
                 catch (IOException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 MainHandler.Disconnect();
+                token.WaitHandle.WaitOne(portSerialDelay);
             }
         }
 

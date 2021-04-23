@@ -1,6 +1,7 @@
 ﻿using FatfsToSpiffsConverter.Communication;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace FatfsToSpiffsConverter
@@ -88,7 +89,7 @@ namespace FatfsToSpiffsConverter
         {
             if(textBox_profileName.Text == "" || textBox_profileName.Text == "введитя имя профиля")
             {
-                MessageBox.Show("Введите имя профиля", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Введите имя профиля", Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
             else
             {
@@ -109,16 +110,16 @@ namespace FatfsToSpiffsConverter
                     if (Settings.SaveProfile(set, textBox_profileName.Text))
                     {
                         Profiles_UpdateList();
-                        MessageBox.Show("Профиль успешно добавлен", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        MessageBox.Show("Профиль успешно добавлен", Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                     else
                     {
-                        MessageBox.Show("Имя профиля уже существует!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        MessageBox.Show("Имя профиля уже существует!", Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    MessageBox.Show(ex.Message, Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
                 textBox_profileName.Text = "введитя имя профиля";
             }
@@ -127,12 +128,12 @@ namespace FatfsToSpiffsConverter
         private void button_RemoveProfile_Click(object sender, EventArgs e)
         {
             var profName = Settings.UsSettings.currentProfile;
-            var res = MessageBox.Show("Удалить профиль: " + profName, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            var res = MessageBox.Show("Удалить профиль: " + profName, Program.programName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             if (res == DialogResult.Yes)
             {
                 Settings.RemoveProfile(comboBox_Profile.SelectedItem.ToString());
                 Profiles_UpdateList();
-                MessageBox.Show("Профиль успешно удалён", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Профиль успешно удалён", Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
 
@@ -255,7 +256,7 @@ namespace FatfsToSpiffsConverter
         private void button1_Click(object sender, EventArgs e)
         {
             var msg = Help.OpenFile();
-            if(msg != "") MessageBox.Show(msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            if(msg != "") MessageBox.Show(msg, Program.programName, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
     }
 }

@@ -34,6 +34,7 @@ namespace FatfsToSpiffsConverter
 
         private static System.Timers.Timer timerTimeoutError = new System.Timers.Timer();
         private static System.Timers.Timer timerProgressBar = new System.Timers.Timer();
+        private static System.Timers.Timer timerWaitConnect = new System.Timers.Timer();
 
 
         public static MainForm FormInstance {
@@ -58,9 +59,14 @@ namespace FatfsToSpiffsConverter
             {
                 StopCreateImage(ErrorList.GLOB_ERR_TIMEOUT);
             }
-           
-            
-    }
+
+
+        }
+
+        private static void TimerWaitConnectElapsedClbck(object sender, ElapsedEventArgs e)
+        {
+            MessagesProto.Instance.SendMessagePing(new MessagePing() { senderId = serverId });
+        }
 
         delegate void IncrementProgressDelegate();
 
@@ -211,6 +217,7 @@ namespace FatfsToSpiffsConverter
         public static void Connect()
         {
             MessagesProto.Instance.SendMessagePing(new MessagePing() { senderId = serverId });
+            //Timer.StartTimer(TimerWaitConnectElapsedClbck, out timerWaitConnect, 1000);
             SetControlPropertyThreadSafe(m_mainForm.label_flashTabMessage, "Text", " ");
             SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "Text", " ");
         }
@@ -346,6 +353,7 @@ namespace FatfsToSpiffsConverter
         {
             if (msg.senderId == deviceId)
             {
+                timerWaitConnect.Stop();
                 isConnectedDevice = true;
                 UpdateConnectionText(connected);
             }
@@ -357,8 +365,7 @@ namespace FatfsToSpiffsConverter
         {
             if (control.InvokeRequired)
             {
-                control.Invoke(new SetControlPropertyThreadSafeDelegate
-                (SetControlPropertyThreadSafe),
+                control.Invoke(new SetControlPropertyThreadSafeDelegate(SetControlPropertyThreadSafe),
                 new object[] { control, propertyName, propertyValue });
             }
             else
