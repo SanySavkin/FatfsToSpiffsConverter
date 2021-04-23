@@ -111,7 +111,7 @@ namespace FatfsToSpiffsConverter
             XElement root = new XElement(rootElementNameUser);
             xdoc.Add(root);
             root.Add(new XElement("currentProfile", outdoorTagerProfileName),
-                        new XElement("portName", "COM1"));                     
+                        new XElement("portName", ""));                     
             xdoc.Save(path);
         }
 
