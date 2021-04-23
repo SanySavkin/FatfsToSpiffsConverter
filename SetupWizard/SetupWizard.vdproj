@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0A00FC270F1F4C64A75E469E932996C0"
+        "MsmKey" = "8:_8F2B268DA9EF41DE96489D1A36498162"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,7 +33,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DF4DBF1BB90648B88665F59FB056F3DF"
+        "MsmKey" = "8:_F337AFF6B0CB4725AE863FDDB7216CBD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -74,6 +74,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -98,6 +106,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -128,12 +144,12 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A00FC270F1F4C64A75E469E932996C0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F2B268DA9EF41DE96489D1A36498162"
             {
-            "SourcePath" = "8:C:\\Users\\sansi\\Desktop\\ico\\proc_chip.ico"
-            "TargetName" = "8:proc_chip.ico"
+            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\bin\\Release\\Help\\W25Qxxx_Flasher.pdf"
+            "TargetName" = "8:W25Qxxx_Flasher.pdf"
             "Tag" = "8:"
-            "Folder" = "8:_77E8E58643A44B1EBFAC32C0DF261B4F"
+            "Folder" = "8:_B45E8CB1B10846D9A77F596E6CC329DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -179,12 +195,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF4DBF1BB90648B88665F59FB056F3DF"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F337AFF6B0CB4725AE863FDDB7216CBD"
             {
-            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\bin\\Release\\Help\\W25Qxxx_Flasher.pdf"
-            "TargetName" = "8:W25Qxxx_Flasher.pdf"
+            "SourcePath" = "8:..\\Ico\\proc_chip.ico"
+            "TargetName" = "8:proc_chip.ico"
             "Tag" = "8:"
-            "Folder" = "8:_B3A1F401460E4EB8AE1ECBAF5320C3E9"
+            "Folder" = "8:_77E8E58643A44B1EBFAC32C0DF261B4F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -268,30 +284,19 @@
                                 {
                                 }
                             }
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_B3A1F401460E4EB8AE1ECBAF5320C3E9"
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_B45E8CB1B10846D9A77F596E6CC329DF"
                             {
                             "Name" = "8:Help"
                             "AlwaysCreate" = "11:FALSE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
-                            "Property" = "8:_CEFD77853F734B8A91552FE8AABFE8E0"
+                            "Property" = "8:_CBD259C6AAE54203A9F50280739784F2"
                                 "Folders"
                                 {
                                 }
                             }
                         }
                     }
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_CD2CFA6478DE444B8FB2C8E437E456A2"
-            {
-            "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:ProgramMenuFolder"
-                "Folders"
-                {
                 }
             }
         }
@@ -311,13 +316,13 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:W25Qxxx_Flasher"
         "ProductCode" = "8:{57E7BCF4-4842-4FBE-9EDD-D3C1AFCFE88C}"
-        "PackageCode" = "8:{D84965A2-A5CF-45C0-9A88-FA502A16D6A5}"
+        "PackageCode" = "8:{8509BE46-814B-4991-8C29-67BE9EA46864}"
         "UpgradeCode" = "8:{F74FC329-8D4F-4C11-9D00-732C1B2E77EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:TRUE"
+        "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:Netronic"
         "ARPHELPTELEPHONE" = "8:"
@@ -431,7 +436,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E7A0DA5FC0DD43829889D9CE84AA9D6B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_040F9D41962545B39A78B471B2086C59"
             {
             "Name" = "8:W25Qxxx_Flasher"
             "Arguments" = "8:"
@@ -442,7 +447,7 @@
             "Target" = "8:_ADCAB82D52314158B40E433887B79B3F"
             "Folder" = "8:_48504D59C719494595CAC482B1862790"
             "WorkingFolder" = "8:_3BA4978E323F47EEA7311F0D8B02282A"
-            "Icon" = "8:_0A00FC270F1F4C64A75E469E932996C0"
+            "Icon" = "8:_F337AFF6B0CB4725AE863FDDB7216CBD"
             "Feature" = "8:"
             }
         }
@@ -846,7 +851,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ADCAB82D52314158B40E433887B79B3F"
             {
-            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\obj\\Debug\\W25Qxxx_Flasher.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BA4978E323F47EEA7311F0D8B02282A"
