@@ -255,7 +255,7 @@ namespace FatfsToSpiffsConverter
                     text = "Ошибка параметров для Spiffs. \r\n Размер флеш-памяти не соответсвует настройкам в текущем профиле";
                     break;
                 case ErrorList.GLOB_ERR_HASH:
-                    text = "Ошибка контрольной суммы. Попробуйте еще раз.\r\n Убедитесь в отсутсвии электромагнитных помех. Используйте шлейф минимальной длинны";
+                    text = "Ошибка контрольной суммы. Попробуйте еще раз.\r\n Убедитесь в хорошем электрическом контакте. Используйте шлейф минимальной длинны";
                     break;
                 case ErrorList.GLOB_ERR_LONG_FILE_NAME:
                     text = "Имена файлов больше 32 символов не поддерживаются";
@@ -274,7 +274,7 @@ namespace FatfsToSpiffsConverter
                     text = "Время ожидания истекло. \r\n Переподключите кабель USB и попробуйте снова";
                     break;
                 case ErrorList.GLOB_ERR_FLASH_NOT_ANSWER:
-                    text = "Микросхема флеш-памяти не отвечает";
+                    text = "Микросхема флеш-памяти не отвечает. \r\n  Убедитесь в хорошем электрическом контакте";
                     break;
                 case ErrorList.GLOB_ERR_OPEN_FILE:
                     text = "Файл на SD карте не найден";
@@ -307,21 +307,21 @@ namespace FatfsToSpiffsConverter
             {
                 if ((ErrorList)msg.codeError == ErrorList.GLOB_ERR_NONE)
                 {
-                        if (!isSentWriteFolderMessage)
-                        {
-                            MainSettings mainSet = Settings.MnSettings;
-                            MessageWriteFolder msg2;
-                            msg2.dstPath = mainSet.pathSpiffs;
-                            msg2.srcPath = mainSet.pathFatfs;
-                            MessagesProto.Instance.SendMessageWriteFolder(msg2);
-                            isSentWriteFolderMessage = true;
-                            SetMessageTextFlashTab(processing, Color.DarkBlue);
-                            Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
-                        }
-                        else
-                        {
-                            StopFlash((ErrorList)msg.codeError);
-                        }
+                    if (!isSentWriteFolderMessage)
+                    {
+                        MainSettings mainSet = Settings.MnSettings;
+                        MessageWriteFolder msg2;
+                        msg2.dstPath = mainSet.pathSpiffs;
+                        msg2.srcPath = mainSet.pathFatfs;
+                        MessagesProto.Instance.SendMessageWriteFolder(msg2);
+                        isSentWriteFolderMessage = true;
+                        SetMessageTextFlashTab(processing, Color.DarkBlue);
+                        Timer.StartTimer(ProgressBarTimerElapsedClbck, out timerProgressBar, 200);
+                    }
+                    else
+                    {
+                        StopFlash((ErrorList)msg.codeError);
+                    }
                 }
                 else
                 {
@@ -330,10 +330,7 @@ namespace FatfsToSpiffsConverter
             }
             else if (isStartedCreateImage)
             {
-                if ((ErrorList)msg.codeError == ErrorList.GLOB_ERR_NONE)
-                {
-                    StopCreateImage((ErrorList)msg.codeError);
-                }
+                StopCreateImage((ErrorList)msg.codeError);
             }
         }
 
