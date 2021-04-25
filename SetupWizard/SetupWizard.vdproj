@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_8F2B268DA9EF41DE96489D1A36498162"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AC54A0E3975E84F32C8D2914CF9D7486"
         "OwnerKey" = "8:_ADCAB82D52314158B40E433887B79B3F"
         "MsmSig" = "8:_UNDEFINED"
@@ -28,6 +22,12 @@
         "Entry"
         {
         "MsmKey" = "8:_ADCAB82D52314158B40E433887B79B3F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B585FC9FBF624D7AA0EEFD7F875C9C46"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -144,26 +144,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F2B268DA9EF41DE96489D1A36498162"
-            {
-            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\bin\\Release\\Help\\W25Qxxx_Flasher.pdf"
-            "TargetName" = "8:W25Qxxx_Flasher.pdf"
-            "Tag" = "8:"
-            "Folder" = "8:_B45E8CB1B10846D9A77F596E6CC329DF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AC54A0E3975E84F32C8D2914CF9D7486"
             {
             "AssemblyRegister" = "3:1"
@@ -193,6 +173,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B585FC9FBF624D7AA0EEFD7F875C9C46"
+            {
+            "SourcePath" = "8:..\\Doc\\W25Qxxx_Flasher.pdf"
+            "TargetName" = "8:W25Qxxx_Flasher.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_B45E8CB1B10846D9A77F596E6CC329DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F337AFF6B0CB4725AE863FDDB7216CBD"
@@ -316,7 +316,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:W25Qxxx_Flasher"
         "ProductCode" = "8:{57E7BCF4-4842-4FBE-9EDD-D3C1AFCFE88C}"
-        "PackageCode" = "8:{8509BE46-814B-4991-8C29-67BE9EA46864}"
+        "PackageCode" = "8:{EF033980-2BE6-4EF9-B6E9-A09E47C3FC1B}"
         "UpgradeCode" = "8:{F74FC329-8D4F-4C11-9D00-732C1B2E77EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
