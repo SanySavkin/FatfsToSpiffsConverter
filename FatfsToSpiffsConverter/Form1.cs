@@ -230,7 +230,7 @@ namespace FatfsToSpiffsConverter
 
         private bool StringIsOk(string str)
         {
-            var symbolsOk = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+            var symbolsOk = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_";
 
             if (str.Length > 1)
             {
