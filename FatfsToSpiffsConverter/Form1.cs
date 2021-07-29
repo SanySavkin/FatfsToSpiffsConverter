@@ -36,6 +36,7 @@ namespace FatfsToSpiffsConverter
 
             CreateProfile_UpdateUI(false);
             SetProfile_UpdateUI();
+            comboBox_FlashType.SelectedIndex = 2;
         }
 
         private void ComboBox_ComPorts_DropDown(object sender, EventArgs e)

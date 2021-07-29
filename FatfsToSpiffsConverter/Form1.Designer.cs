@@ -78,10 +78,12 @@ namespace FatfsToSpiffsConverter
             this.button_imageTabStart = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label_ImageTabMessageText = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.comboBox_FlashType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -714,6 +716,8 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel3.Controls.Add(this.button_imageTabStart, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.progressBar2, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.label_ImageTabMessageText, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.comboBox_FlashType, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -828,6 +832,33 @@ namespace FatfsToSpiffsConverter
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // comboBox_FlashType
+            // 
+            this.comboBox_FlashType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_FlashType.FormattingEnabled = true;
+            this.comboBox_FlashType.Items.AddRange(new object[] {
+            "W25Q80",
+            "W25Q16",
+            "W25Q32",
+            "W25Q64",
+            "W25Q128"});
+            this.comboBox_FlashType.Location = new System.Drawing.Point(240, 109);
+            this.comboBox_FlashType.Margin = new System.Windows.Forms.Padding(5, 9, 3, 3);
+            this.comboBox_FlashType.Name = "comboBox_FlashType";
+            this.comboBox_FlashType.Size = new System.Drawing.Size(121, 24);
+            this.comboBox_FlashType.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(229, 40);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Тип микросхемы:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -909,6 +940,8 @@ namespace FatfsToSpiffsConverter
         public System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.ComboBox comboBox_FlashType;
     }
 }
 

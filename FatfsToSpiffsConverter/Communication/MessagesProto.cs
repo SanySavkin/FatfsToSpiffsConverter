@@ -77,6 +77,7 @@ namespace FatfsToSpiffsConverter.Communication
 
     public struct MessageCreateImage
     {
+        public uint fileSize;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
         public string fileName;
     }

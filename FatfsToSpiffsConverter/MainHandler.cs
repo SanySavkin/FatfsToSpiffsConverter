@@ -169,7 +169,10 @@ namespace FatfsToSpiffsConverter
 
                 SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "ForeColor", Color.DarkBlue);
                 SetControlPropertyThreadSafe(m_mainForm.label_ImageTabMessageText, "Text", processing);
-                MessagesProto.Instance.SendMessageCreateImage(new MessageCreateImage() { fileName = imagesFolderName + m_mainForm.textBox_imageTabPath.Text });
+                MessagesProto.Instance.SendMessageCreateImage(new MessageCreateImage() { 
+                    fileName = imagesFolderName + m_mainForm.textBox_imageTabPath.Text,
+                    fileSize = MemoryChip.GetSize((FlashTypes)m_mainForm.comboBox_FlashType.SelectedIndex)
+                });
             }
             else
             {
