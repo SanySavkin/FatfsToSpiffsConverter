@@ -78,12 +78,13 @@ namespace FatfsToSpiffsConverter
             this.button_imageTabStart = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label_ImageTabMessageText = new System.Windows.Forms.Label();
+            this.comboBox_FlashType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label_version = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.comboBox_FlashType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -810,28 +811,6 @@ namespace FatfsToSpiffsConverter
             this.label_ImageTabMessageText.TabIndex = 5;
             this.label_ImageTabMessageText.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(476, 418);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Help";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightGreen;
-            this.button1.Location = new System.Drawing.Point(180, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 50);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Help";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // comboBox_FlashType
             // 
             this.comboBox_FlashType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -859,6 +838,38 @@ namespace FatfsToSpiffsConverter
             this.label2.Text = "Тип микросхемы:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label_version);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(476, 418);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Help";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label_version
+            // 
+            this.label_version.AutoSize = true;
+            this.label_version.Location = new System.Drawing.Point(185, 380);
+            this.label_version.Name = "label_version";
+            this.label_version.Size = new System.Drawing.Size(54, 17);
+            this.label_version.TabIndex = 1;
+            this.label_version.Text = "version";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGreen;
+            this.button1.Location = new System.Drawing.Point(188, 60);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 50);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -883,6 +894,7 @@ namespace FatfsToSpiffsConverter
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -942,6 +954,7 @@ namespace FatfsToSpiffsConverter
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.ComboBox comboBox_FlashType;
+        private System.Windows.Forms.Label label_version;
     }
 }
 

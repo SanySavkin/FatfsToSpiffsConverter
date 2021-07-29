@@ -37,6 +37,8 @@ namespace FatfsToSpiffsConverter
             CreateProfile_UpdateUI(false);
             SetProfile_UpdateUI();
             comboBox_FlashType.SelectedIndex = 2;
+
+            label_version.Text = "version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void ComboBox_ComPorts_DropDown(object sender, EventArgs e)

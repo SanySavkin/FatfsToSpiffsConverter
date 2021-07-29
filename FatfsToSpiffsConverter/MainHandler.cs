@@ -252,7 +252,7 @@ namespace FatfsToSpiffsConverter
                     text = "Ошибка выделения памяти. \r\n Переподключите кабель USB и попробуйте снова";
                     break;
                 case ErrorList.GLOB_ERR_FILE_WRITE:
-                    text = "Ошибка записи в файловую систему Spiffs. \r\n Убедитесь что достаточно памяти для копирования всех файлов";
+                    text = "Ошибка записи в файловую систему Spiffs. \r\n Недостаточно памяти";
                     break;
                 case ErrorList.GLOB_ERR_FLASH_PARAMETERS:
                     text = "Ошибка параметров для Spiffs. \r\n Размер флеш-памяти не соответсвует настройкам в текущем профиле";
@@ -280,7 +280,7 @@ namespace FatfsToSpiffsConverter
                     text = "Микросхема флеш-памяти не отвечает. \r\n  Убедитесь в хорошем электрическом контакте";
                     break;
                 case ErrorList.GLOB_ERR_OPEN_FILE:
-                    text = "Файл на SD карте не найден";
+                    text = "Ошибка чтения/записи SD карты";
                     break;
                 case ErrorList.GLOB_ERR_FILE_READ:
                     text = "Ошибка чтения файла. Попробуйте ещё раз";
@@ -289,10 +289,10 @@ namespace FatfsToSpiffsConverter
                     text = "Соединение было потеряно";
                     break;
                 case ErrorList.GLOB_ERR_IMAGE_NOT_CORRECT:
-                    text = "Файл образа некоректен";
+                    text = "Файл образа некорректен";
                     break;
                 case ErrorList.GLOB_ERR_FILES_NOT_FOUNDED:
-                    text = "Ни один файл не найден. Проверьте наличие SD карты или наличие файлов";
+                    text = "Ни один файл не найден. Проверьте наличие SD карты и наличие файлов";
                     break;
                 default:
                     text = errorString;

@@ -27,7 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B585FC9FBF624D7AA0EEFD7F875C9C46"
+        "MsmKey" = "8:_E7007A1DA7F7421EA396FA6FCA6248CC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -175,7 +175,7 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B585FC9FBF624D7AA0EEFD7F875C9C46"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E7007A1DA7F7421EA396FA6FCA6248CC"
             {
             "SourcePath" = "8:..\\Doc\\W25Qxxx_Flasher.pdf"
             "TargetName" = "8:W25Qxxx_Flasher.pdf"
@@ -315,15 +315,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:W25Qxxx_Flasher"
-        "ProductCode" = "8:{57E7BCF4-4842-4FBE-9EDD-D3C1AFCFE88C}"
-        "PackageCode" = "8:{EF033980-2BE6-4EF9-B6E9-A09E47C3FC1B}"
+        "ProductCode" = "8:{5CD040FA-CFB5-42DF-8263-474B7DF1AD4F}"
+        "PackageCode" = "8:{57F6D342-E9D1-4758-9B52-F0B73E7BD81A}"
         "UpgradeCode" = "8:{F74FC329-8D4F-4C11-9D00-732C1B2E77EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.2.4"
         "Manufacturer" = "8:Netronic"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -851,7 +851,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ADCAB82D52314158B40E433887B79B3F"
             {
-            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\obj\\Debug\\W25Qxxx_Flasher.exe"
+            "SourcePath" = "8:..\\FatfsToSpiffsConverter\\obj\\Release\\W25Qxxx_Flasher.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BA4978E323F47EEA7311F0D8B02282A"
